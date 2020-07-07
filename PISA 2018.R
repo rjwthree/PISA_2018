@@ -5,62 +5,6 @@
 ######################################################################################
 
 
-#### Table of Contents ####
-
-# [1] Read and Format Data
-# select country
-# objects needed throughout the script
-
-# [2] Weighted Functions
-# functions needed throughout the script, with descriptions
-
-# [3] Means and Medians, Tail Proportion Ratios (TPRs), U3 Ratios (U3Rs)
-# Means and medians of total group, females, males, as well as mean and median differences
-# TPRs and LTPRs above mean and percentiles
-# LTPR tail-center differences
-# U3Rs and LU3Rs above percentiles
-# LU3R tail-center differences
-
-# [4] Other Effect Sizes
-# Cohen's d
-# U3
-# Probability of superiority (PS)
-# Variance ratio (VR), Log-transformed VR (LVR)
-# Left and right VR and LVR (VR_L, VR_R, LVR_L, LVR_R)
-# Mean absolute deviation (from the median) ratio (MADR), Log-transformed MADR (LMADR)
-# Left and right MADR and LMADR (MADR_L, MADR_R, LMADR_L, LMADR_R)
-# Gini's mean difference ratio (GMDR), Log-transformed GMDR (LGMDR)
-
-# [5] Other Effect Sizes Adjusted for Age
-# dataframe with scores linearly corrected for age
-# age-corrected effect sizes
-
-# [6] Standard Errors
-# bootstrap resampling variance
-# imputation variance
-# total variance and standard error
-# for all of the following
-# Means and medians of total group, females, males, as well as mean and median differences
-# LTPRs and LTPR tail-center differences***
-# LU3Rs and LU3R tail-center differences**
-# d, U3, LVR, LVR_L, LVR_R, LMADR, LMADR_L, LMADR_R, LGMDR*
-# Probability of superiority****
-
-# [7] 95% Confidence Intervals
-# 95% CIs for Means and Medians, TPRs, U3Rs, other effect sizes
-
-# [8] Output
-# write dataframes with all needed variables
-
-# ratios are log-transformed to place them on a linear scale
-
-# *nontrivial runtime (more than a few seconds on a personal computer)
-# a higher number of asterisks indicates longer runtime
-# updates are printed while long loops are running
-
-
-
-
 # [1] Read and Format Data
 # select country
 # objects needed throughout the script
