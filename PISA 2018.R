@@ -133,84 +133,84 @@ Country <- 'Australia' # manually select country
 
 # subset a country
 CT <- 'ALB' # Albania
-CT <- 'ARE' # United Arab Emirates
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
 CT <- 'AUT' # Austria
-CT <- 'BEL' # Belgium
-CT <- 'BGR' # Bulgaria
-CT <- 'BIH' # Bosnia and Herzegovina
+CT <- 'QAZ' # Baku, Azerbaijan
+CT <- 'QCI' # B-S-J-Z, China (Beijing, Shanghai, Jiangsu, Zhejiang)
 CT <- 'BLR' # Belarus
+CT <- 'BEL' # Belgium
+CT <- 'BIH' # Bosnia and Herzegovina
 CT <- 'BRA' # Brazil
 CT <- 'BRN' # Brunei Darussalam
+CT <- 'BGR' # Bulgaria
 CT <- 'CAN' # Canada
-CT <- 'CHE' # Switzerland
 CT <- 'CHL' # Chile
 CT <- 'COL' # Colombia
 CT <- 'CRI' # Costa Rica
+CT <- 'HRV' # Croatia
 CT <- 'CZE' # Czech Republic
-CT <- 'DEU' # Germany
 CT <- 'DNK' # Denmark
 CT <- 'DOM' # Dominican Republic
-CT <- 'ESP' # Spain
 CT <- 'EST' # Estonia
 CT <- 'FIN' # Finland
 CT <- 'FRA' # France
-CT <- 'GBR' # United Kingdom
 CT <- 'GEO' # Georgia
+CT <- 'DEU' # Germany
 CT <- 'GRC' # Greece
-CT <- 'HKG' # Hong Kong
-CT <- 'HRV' # Croatia
+CT <- 'HKG' # Hong Kong, China
 CT <- 'HUN' # Hungary
+CT <- 'ISL' # Iceland
 CT <- 'IDN' # Indonesia
 CT <- 'IRL' # Ireland
-CT <- 'ISL' # Iceland
 CT <- 'ISR' # Israel
 CT <- 'ITA' # Italy
-CT <- 'JOR' # Jordan
 CT <- 'JPN' # Japan
+CT <- 'JOR' # Jordan
 CT <- 'KAZ' # Kazakhstan
 CT <- 'KOR' # Korea
 CT <- 'KSV' # Kosovo
+CT <- 'LVA' # Latvia
 CT <- 'LBN' # Lebanon
 CT <- 'LTU' # Lithuania
 CT <- 'LUX' # Luxembourg
-CT <- 'LVA' # Latvia
-CT <- 'MAC' # Macao
-CT <- 'MAR' # Morocco
-CT <- 'MDA' # Moldova
-CT <- 'MEX' # Mexico
+CT <- 'MAC' # Macao, China
 CT <- 'MKD' # Macedonia
-CT <- 'MLT' # Malta
-CT <- 'MNE' # Montenegro
 CT <- 'MYS' # Malaysia
+CT <- 'MLT' # Malta
+CT <- 'MEX' # Mexico
+CT <- 'MDA' # Moldova
+CT <- 'MNE' # Montenegro
+CT <- 'MAR' # Morocco
 CT <- 'NLD' # Netherlands
-CT <- 'NOR' # Norway
 CT <- 'NZL' # New Zealand
+CT <- 'NOR' # Norway
 CT <- 'PAN' # Panama
 CT <- 'PER' # Peru
 CT <- 'PHL' # Phillipines
 CT <- 'POL' # Poland
 CT <- 'PRT' # Portugal
 CT <- 'QAT' # Qatar
-CT <- 'QAZ' # Baku, Azerbaijan
-CT <- 'QCI' # ???China???
 CT <- 'QMR' # ???
 CT <- 'QRT' # ???
 CT <- 'ROU' # Romania
 CT <- 'RUS' # Russia
 CT <- 'SAU' # Saudi Arabia
-CT <- 'SGP' # Singapore
 CT <- 'SRB' # Serbia
+CT <- 'SGP' # Singapore
 CT <- 'SVK' # Slovakia
 CT <- 'SVN' # Slovenia
+CT <- 'ESP' # Spain
 CT <- 'SWE' # Sweden
+CT <- 'CHE' # Switzerland
 CT <- 'TAP' # Taiwan
 CT <- 'THA' # Thailand
 CT <- 'TUR' # Turkey
 CT <- 'UKR' # Ukraine
-CT <- 'URY' # Uruguay
+CT <- 'ARE' # United Arab Emirates
+CT <- 'GBR' # United Kingdom
 CT <- 'USA' # United States
+CT <- 'URY' # Uruguay
 CT <- 'VNM' # Vietnam
 
 
