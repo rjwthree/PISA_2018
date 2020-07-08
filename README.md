@@ -27,7 +27,7 @@ All functions used for analysis are user-defined, for a few reasons:
 
 (1) Some functions were not available, especially for weighted statistics and effect sizes I created because I wasn't aware of any that were suitable (see next section).
 
-(2) Some existing functions were inefficient and runtime was far too long because of the large sample sizes and extensive repetition during jackknife resampling. All efforts were made to maximize the functions' efficiency.
+(2) Some existing functions were inefficient and runtime was far too long because of the large sample sizes and extensive repetition during bootstrap resampling. All efforts were made to maximize the functions' efficiency.
 
 (3) User-defined functions are entirely transparent and explicit, which is particularly good when different packages produce slightly different results due to differing methods.
 
