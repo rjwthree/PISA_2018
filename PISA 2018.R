@@ -73,9 +73,8 @@ write.csv(x = PISA18, file = 'PISA input/2018.csv') # store it as a csv
 
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 
-Country <- 'Australia' # manually select country
 
-# subset a country
+# manually subset a country
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
@@ -135,8 +134,8 @@ CT <- 'PHL' # Phillipines
 CT <- 'POL' # Poland
 CT <- 'PRT' # Portugal
 CT <- 'QAT' # Qatar
-CT <- 'QMR' # ???
-CT <- 'QRT' # ???
+CT <- 'QMR' # unknown
+CT <- 'QRT' # unknown
 CT <- 'ROU' # Romania
 CT <- 'RUS' # Russia
 CT <- 'SAU' # Saudi Arabia
@@ -160,6 +159,34 @@ CT <- 'VNM' # Vietnam
 
 
 #### Create Objects ####
+
+# lookup table
+CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Baku',
+                  'B-S-J-Z', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Brazil',
+                  'Brunei Darussalam', 'Bulgaria', 'Canada', 'Chile', 'Colombia',
+                  'Costa Rica', 'Croatia', 'Czech Republic', 'Denmark', 'Dominican Republic',
+                  'Estonia', 'Finland', 'France', 'Georgia', 'Germany',
+                  'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'Indonesia',
+                  'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
+                  'Kazakhstan', 'Korea', 'Kosovo', 'Latvia', 'Lebanon',
+                  'Lithuania', 'Luxembourg', 'Macao', 'Macedonia', 'Malaysia',
+                  'Malta', 'Mexico', 'Moldova', 'Montenegro', 'Morocco',
+                  'Netherlands', 'New Zealand', 'Norway', 'Panama', 'Peru',
+                  'Phillipines', 'Poland', 'Portugal', 'Qatar', 'Unknown1',
+                  'Unknown2', 'Romania', 'Russia', 'Saudi Arabia', 'Serbia',
+                  'Singapore', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
+                  'Switzerland', 'Taiwan', 'Thailand', 'Turkey', 'Ukraine',
+                  'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Vietnam')
+names(CNT) <- c('ALB', 'ARG', 'AUS', 'AUT', 'QAZ', 'QCI', 'BLR', 'BEL', 'BIH', 'BRA',
+                'BRN', 'BGR', 'CAN', 'CHL', 'COL', 'CRI', 'HRV', 'CZE', 'DNK', 'DOM',
+                'EST', 'FIN', 'FRA', 'GEO', 'DEU', 'GRC', 'HKG', 'HUN', 'ISL', 'IDN',
+                'IRL', 'ISR', 'ITA', 'JPN', 'JOR', 'KAZ', 'KOR', 'KSV', 'LVA', 'LBN',
+                'LTU', 'LUX', 'MAC', 'MKD', 'MYS', 'MLT', 'MEX', 'MDA', 'MNE', 'MAR',
+                'NLD', 'NZL', 'NOR', 'PAN', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'QMR',
+                'QRT', 'ROU', 'RUS', 'SAU', 'SRB', 'SGP', 'SVK', 'SVN', 'ESP', 'SWE',
+                'CHE', 'TAP', 'THA', 'TUR', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'VNM')
+
+Country <- as.character(CNT[,CT])
 
 P.18 <- data.frame(PISA18[CNT == CT])
 P18 <- P.18[,c(4, 18, 944, 835, 1027:1046, 945:1024)] # subset columns
