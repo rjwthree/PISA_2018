@@ -15,12 +15,12 @@ The script proceeds as follows:
 
 Effect sizes were selected (or created) to be robust, intuitive and useful. They examine sex differences throughout the distribution, not just at the center. Common effect sizes (e.g., Cohen's d) are also used. An attitude of 'multiverse analysis' is applied: when multiple reasonable analyses exist, they are all conducted so that the sensitivity of substantive conclusions to specific analytic choices can be observed.
 
-The data are complex for two reasons: (1) each student responds to only a subset of all questions, so each student is given ten imputed scores, also known as plausible values (PVs); and (2) the sampling procedures employ clustering and stratification, so a bootstrap method is used to compute standard errors. Due to the first point, standard errors incorporate not only sampling variance but also imputation variance. The sampling design also means that each student is assigned their own weight. The data files are designed for SPSS and SAS and are analyzed almost exclusively as such.
+The data are complex for two reasons: (1) each student responds to only a subset of all questions, so each student is given ten imputed scores, also known as plausible values (PVs); and (2) the sampling procedures employ clustering and stratification, so a balanced repeated replication (BRR) method is used to compute standard errors (specifically, it is Fay's method). Due to the first point, standard errors incorporate not only sampling variance but also imputation variance. The sampling design also means that each student is assigned their own weight. The data files are designed for SPSS and SAS and are analyzed almost exclusively as such.
 
 Ratios are log-transformed to place them on a linear scale.
 
 ## Read and Format Data
-The data are read from SPSS format using the 'haven' package and written in csv format so that reading can occur efficiently with the 'data.table' package. A country is subsetted and its data are converted to a dataframe. Some objects are created that will be needed throughout the script.
+The data are read from SPSS format using the 'haven' package and written in csv format so that subsequent reading can occur efficiently with the 'data.table' package. A country is subsetted and its data are converted to a dataframe. Some objects are created that will be needed throughout the script.
 
 ## Weighted Functions
 All functions used for analysis are user-defined, for a few reasons:
@@ -36,33 +36,33 @@ All functions used for analysis are user-defined, for a few reasons:
 
 Means and Medians - Means and medians of total group, females, and males, as well as male-female mean and median differences.
 
-Tail Proportion Ratios (TPRs) - The proportion of males above a threshold divided by the proportion of females above that threshold. The thresholds are defined by the total group: the mean and every 5th percentile from 5 to 95.
-
-LTPR Tail-Center Differences* - Differences between log-transformed TPRs (LTPRs) are used to express changes in sex differences throughout the distribution. In the right tail, the differences are between LTPRs at the 95th percentile and median, 90th percentile and median, 95th percentile and mean, 90th percentile and mean. In the left tail, the differences are between LTPRs at the median and 10th percentile, median and 5th percentile, mean and 10th percentile, mean and 5th percentile.
-
-U3 Ratios (U3Rs)* - The proportion of males above a threshold defined by the female subgroup, divided by the natural proportion of females above that threshold (e.g., 75% above the 25th percentile). The thresholds are every 5th percentile from 5 to 95. Adapted from Cohen's U3.
-
-LU3R Tail-Center Differences* - Differences between log-transformed U3Rs (LU3Rs) are used to express changes in sex differences throughout the distribution. In the right tail, the differences are between LU3Rs at the 95th percentile and median and at the 90th percentile and median. In the left tail, the differences are between LU3Rs at the median and 10th percentile and at the median and 5th percentile.
-
 Cohen's d - This is a very common effect size and it is implemented as usual: the raw mean difference divided by the quadratic mean of standard deviations.
 
 U3* - The proportion of males above the female median. Adapted from the canonical Cohen's U3, which is incorrectly based on the mean rather than the median.
 
 Probability of Superiority (PS) - The probability that a random male will have a higher score than a random female.
 
-Variance Ratio (VR) - The male-female variance ratio.
+Standard Deviation Ratio (SDR) - The ratio of male SD to female SD.
 
-Left VR and Right VR* - The VR divided into the left and right tails. That is, the mean squared deviation from the mean among the subset of scores below or above the mean, respectively.
+Left SDR and Right SDR* - The SDR divided into the left and right tails. That is, the square root of the mean squared deviation from the mean among the subset of scores below or above the mean, respectively.
 
-Mean Absolute Deviation Ratio (MADR) - The male-female ratio of mean absolute deviation from the median.
+Median Absolute Deviation Ratio (MADR) - The male-female ratio of median absolute deviation (MAD) from the median.
 
-Left MADR and Right MADR* - The MADR divided into the left and right tails. That is, the mean absolute deviation from the median among the subset of scores below or above the median, respectively.
+Left MADR and Right MADR* - The MADR divided into the left and right tails. That is, the median absolute deviation from the median among the subset of scores below or above the median, respectively.
 
 Gini's Mean Difference Ratio (GMDR) - Imagine randomly selecting two students and finding the distance between their scores. GMD gives the expected value of this interval: the mean absolute difference. The GMDR is the male-female ratio.
 
-The next section adjusts the scores linearly for age and recalculates all the effect sizes from Cohen's d down.
+Tail Proportion Ratios (TPRs) - The proportion of males below (left tail) or above (right tail) a threshold, divided by the proportion of females below or above the threshold. The thresholds are defined by the total group. The left tail TPRs are below the 5th and 10th percentiles, and the right tail TPRs are above the 90th and 95th percentiles.
+
+U3 Ratios (U3Rs)* - The proportion of males below (left tail) or above (right tail) a threshold defined by the female subgroup, divided by the natural proportion of females below or above that threshold (e.g., 10% above the 90th percentile). The left tail U3Rs are below the 5th and 10th percentiles, and the right tail U3Rs are above the 90th and 95th percentiles. Adapted from U3 (see above).
+
+Median-aligned U3 Ratios (MU3Rs)* - U3Rs calculated after aligning the male and female medians, for each percentile. The MU3R below/above the median is 1 by definition. A U shape (values decrease to the left of the median and increase to the right) indicates higher male variability, and an upside-down U shape (values increase to the left of the median and decrease to the right) indicates higher female variability.
+
+Standardized Quantile Differences (SQDs)* - Raw male-female differences at each percentile, as a percentage of the mean of male and female MADs. An increasing trend from left to right indicates higher male variability; a decreasing trend indicates higher female variability. The purpose of dividing by MAD is to standardize the quantile differences with a robust measure of scale.
+
+The next section adjusts the scores linearly for age and recalculates the effect sizes from Cohen's d to GMDR.
 
 ## Standard Errors and Confidence Intervals
-Computing standard errors is the most computationally intensive procedure. The bootstrap resampling section, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to formulas described by the 'PISA 2018 Technical Report'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
+Computing standard errors is the most computationally intensive procedure. The BRR section, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to formulas described by the 'PISA 2018 Technical Report'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
 
 The results are then summarized in dataframes called 'OutputM' and 'OutputR', and written to the appropriate directory.
