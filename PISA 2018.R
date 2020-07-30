@@ -23,6 +23,7 @@
 # write dataframe with all needed variables
 
 # ratios are log-transformed to place them on a linear scale
+# log-transformed ratios are signified by an 'L' preceding the acronym
 
 
 
