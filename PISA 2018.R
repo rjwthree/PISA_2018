@@ -301,19 +301,19 @@ wt.ecdf <- function(x, w, p) {
 
 
 # Cohen's d
-dfn <- function(d1, d2, v) {
+dfn <- function(d1, d2, w, v) {
   (wt.mn(d1[,v], d1[,w]) - wt.mn(d2[,v], d2[,w]))/sqrt((wt.var(d1[,v], d1[,w]) + wt.var(d2[,v], d2[,w]))/2)
 }
 # raw mean difference divided by quadratic mean of standard deviations
 
 
 # U3
-U3fn <- function(d1, d2, v) {1 - wt.ecdf(d1[,v], d1[,w], wt.qnt(d2[,v], d2[,w], .5))}
+U3fn <- function(d1, d2, w, v) {1 - wt.ecdf(d1[,v], d1[,w], wt.qnt(d2[,v], d2[,w], .5))}
 # the precise share of male weight above the female median
 
 
 # probability of superiority (PS)
-PSfn <- function(d1, d2, v) {
+PSfn <- function(d1, d2, w, v) {
   d1 <- d1[order(d1[,v]),]
   SuperM <- numeric(FSize)
   for (i in 1:FSize) {SuperM[i] <- sum(d1[which(d1[,v] > d2[i,v]),w])}
@@ -338,13 +338,13 @@ PSfn <- function(d1, d2, v) {
 
 
 # log-transformed standard deviation ratio (LSDR)
-LSDRfn <- function(d1, d2, v) {log(sqrt(wt.var(d1[,v], d1[,w]) / wt.var(d2[,v], d2[,w])))}
+LSDRfn <- function(d1, d2, w, v) {log(sqrt(wt.var(d1[,v], d1[,w]) / wt.var(d2[,v], d2[,w])))}
 # M/F ratio of standard deviation
 # log-transform the ratio for linear scale
 
 
 # log-transformed tail SDR (LSDR_T)
-LSDR_Tfn <- function(d1, d2, v, t) {
+LSDR_Tfn <- function(d1, d2, w, v, t) {
   q1 <- wt.mn(d1[,v], d1[,w])
   q2 <- wt.mn(d2[,v], d2[,w])
   if (t == 'L') {
@@ -366,7 +366,7 @@ LSDR_Tfn <- function(d1, d2, v, t) {
 
 
 # log-transformed median absolute deviation ratio (LMADR)
-LMADRfn <- function(d1, d2, v) {
+LMADRfn <- function(d1, d2, w, v) {
   log(wt.qnt(abs(d1[,v]-wt.qnt(d1[,v], d1[,w], .5)), d1[,w], .5)/
         wt.qnt(abs(d2[,v]-wt.qnt(d2[,v], d2[,w], .5)), d2[,w], .5))
 }
@@ -375,7 +375,7 @@ LMADRfn <- function(d1, d2, v) {
 
 
 # log-transformed tail MADR (LMADR_T)
-LMADR_Tfn <- function(d1, d2, v, t) {
+LMADR_Tfn <- function(d1, d2, w, v, t) {
   q1 <- wt.qnt(d1[,v], d1[,w], .5)
   q2 <- wt.qnt(d2[,v], d2[,w], .5)
   if (t == 'L') {
@@ -394,7 +394,7 @@ LMADR_Tfn <- function(d1, d2, v, t) {
 
 
 # log-transformed Gini's mean difference ratio (LGMDR)
-LGMDRfn <- function(d1, d2, v) {
+LGMDRfn <- function(d1, d2, w, v) {
   a1 <- sort(d1[,v])
   a2 <- sort(d2[,v])
   b1 <- d1[,w][order(d1[,v])]/sum(d1[,w])
@@ -422,7 +422,7 @@ LGMDRfn <- function(d1, d2, v) {
 
 
 # log-transformed U3 ratio (LU3R)
-LU3Rfn <- function(d1, d2, q, v) {
+LU3Rfn <- function(d1, d2, q, w, v) {
   m <- wt.ecdf(d1[,v], d1[,w], wt.qnt(d2[,v], d2[,w], q))
   if (q < .5) {return(log(m/q))} else {return(log((1-m)/(1-q)))}
 }
@@ -432,7 +432,7 @@ LU3Rfn <- function(d1, d2, q, v) {
 
 
 # log-transformed tail proportion ratio (LTPR)
-LTPRfn <- function(d1, d2, q, v) {
+LTPRfn <- function(d1, d2, q, w, v) {
   d <- rbind(d1, d2)
   k <- wt.qnt(d[,v], d[,w], q)
   m <- wt.ecdf(d1[,v], d1[,w], k)
@@ -445,7 +445,7 @@ LTPRfn <- function(d1, d2, q, v) {
 
 
 # log-transformed median-aligned U3 ratio (LMU3R)
-LMU3Rfn <- function(d1, d2, q, v) {
+LMU3Rfn <- function(d1, d2, q, w, v) {
   d1[,v] <- wt.qnt(d2[,v], d2[,w], .5) - wt.qnt(d1[,v], d1[,w], .5) + d1[,v]
   m <- wt.ecdf(d1[,v], d1[,w], wt.qnt(d2[,v], d2[,w], q))
   if (q < .5) {return(log(m/q))} else {return(log((1-m)/(1-q)))}
@@ -455,7 +455,7 @@ LMU3Rfn <- function(d1, d2, q, v) {
 
 
 # standardized quantile difference (SQD)
-SQDfn <- function(d1, d2, q, v) {
+SQDfn <- function(d1, d2, q, w, v) {
   QD <- wt.qnt(d1[,v], d1[,w], q) - wt.qnt(d2[,v], d2[,w], q)
   m <- wt.qnt(abs(d1[,v]-wt.qnt(d1[,v], d1[,w], .5)), d1[,w], .5)
   f <- wt.qnt(abs(d2[,v]-wt.qnt(d2[,v], d2[,w], .5)), d2[,w], .5)
