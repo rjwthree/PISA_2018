@@ -42,7 +42,7 @@ library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 
 
-# manually subset a country
+# manually subset a polity
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
