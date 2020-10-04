@@ -474,7 +474,7 @@ SQDfn <- function(d1, d2, q, w, v) {
   f <- wt.qnt(abs(d2[,v]-wt.qnt(d2[,v], d2[,w], .5)), d2[,w], .5)
   return(QD / ((m+f)/2) * 100)
 }
-# raw quantile M-F difference as a percentage of mean MAD
+# raw quantile M-F difference as a percentage of mean MAD: QDfn / MMADfn * 100
 
 
 
