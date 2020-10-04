@@ -65,4 +65,4 @@ The next section adjusts the scores linearly for age and recalculates the effect
 ## Standard Errors and Confidence Intervals
 Computing standard errors is the most computationally intensive procedure. The use of 80 sets of replicate weights, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to procedures described by the '[PISA 2018 Technical Report](https://www.oecd.org/pisa/data/pisa2018technicalreport/)'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
 
-The results are then summarized in dataframes called 'OutputM' and 'OutputR', and written to the appropriate directory.
+The results are then summarized in two dataframes, one each for math and reading, and written to the appropriate directory.
