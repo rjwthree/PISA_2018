@@ -454,6 +454,19 @@ LMU3Rfn <- function(d1, d2, q, w, v) {
 # compute the LMU3R (see LU3R description)
 
 
+# quantile difference (QD)
+QDfn <- function(d1, d2, q, w, v) {wt.qnt(d1[,v], d1[,w], q) - wt.qnt(d2[,v], d2[,w], q)}
+# raw quantile M-F difference
+
+
+# mean MAD (MMAD)
+MMADfn <- function(d1, d2, w, v) {
+  (wt.qnt(abs(d1[,v]-wt.qnt(d1[,v], d1[,w], .5)), d1[,w], .5) +
+     wt.qnt(abs(d2[,v]-wt.qnt(d2[,v], d2[,w], .5)), d2[,w], .5)) / 2
+}
+# mean of male and female MADs, computed once outside of loop for efficiency
+
+
 # standardized quantile difference (SQD)
 SQDfn <- function(d1, d2, q, w, v) {
   QD <- wt.qnt(d1[,v], d1[,w], q) - wt.qnt(d2[,v], d2[,w], q)
@@ -536,12 +549,10 @@ P <- c(.05, .1, .9, .95) # quantiles
 
 for (i in 1:4) { # for percentiles 5, 10, 90, 95
   for (s in 1:10) { # for each PV
-    MV <- paste0('MV',s) # math PV
-    RV <- paste0('RV',s) # reading PV
-    RMs[s+(i-1)*10] <- LU3Rfn(P18_M, P18_F, P[i], 'HWt', MV) # LU3Rs (math)
-    RRs[s+(i-1)*10] <- LU3Rfn(P18_M, P18_F, P[i], 'HWt', RV) # LU3Rs (reading)
-    RMs[s+(i+3)*10] <- LTPRfn(P18_M, P18_F, P[i], 'HWt', MV) # LTPRs (math)
-    RRs[s+(i+3)*10] <- LTPRfn(P18_M, P18_F, P[i], 'HWt', RV) # LTPRs (reading)
+    RMs[s+(i-1)*10] <- LU3Rfn(P18_M, P18_F, P[i], 'HWt', paste0('MV',s)) # LU3Rs (math)
+    RRs[s+(i-1)*10] <- LU3Rfn(P18_M, P18_F, P[i], 'HWt', paste0('RV',s)) # LU3Rs (reading)
+    RMs[s+(i+3)*10] <- LTPRfn(P18_M, P18_F, P[i], 'HWt', paste0('MV',s)) # LTPRs (math)
+    RRs[s+(i+3)*10] <- LTPRfn(P18_M, P18_F, P[i], 'HWt', paste0('RV',s)) # LTPRs (reading)
   }
   RM[i] <- mean(RMs[(10*i-9):(10*i)]) # LU3R for each percentile (math)
   RR[i] <- mean(RRs[(10*i-9):(10*i)]) # LU3R for each percentile (reading)
@@ -555,20 +566,24 @@ for (i in 1:4) { # for percentiles 5, 10, 90, 95
 
 LMU3RMs <- LMU3RRs <- SQDMs <- SQDRs <- numeric(990) # empty containers
 LMU3RM <- LMU3RR <- SQDM <- SQDR <- numeric(99) # empty containers
+MMADMs <- MMADRs <- numeric(10) # empty containers
+
+for (i in 1:10) { # mean MADs
+  MMADMs[i] <- MMADfn(P18_M, P18_F, 'HWt', paste0('MV',i))
+  MMADRs[i] <- MMADfn(P18_M, P18_F, 'HWt', paste0('RV',i))
+}
 
 for (i in 1:99) { # for each percentile
   for (s in 1:10) { # for each PV
-    MV <- paste0('MV',s) # math PV
-    RV <- paste0('RV',s) # reading PV
-    LMU3RMs[s+(i-1)*10] <- LMU3Rfn(P18_M, P18_F, i/100, 'HWt', MV) # LMU3Rs (math)
-    LMU3RRs[s+(i-1)*10] <- LMU3Rfn(P18_M, P18_F, i/100, 'HWt', RV) # LMU3Rs (reading)
-    SQDMs[s+(i-1)*10] <- SQDfn(P18_M, P18_F, i/100, 'HWt', MV) # SQDs (math)
-    SQDRs[s+(i-1)*10] <- SQDfn(P18_M, P18_F, i/100, 'HWt', RV) # SQDs (reading)
+    LMU3RMs[s+(i-1)*10] <- LMU3Rfn(P18_M, P18_F, i/100, 'HWt', paste0('MV',s)) # LMU3Rs (math)
+    LMU3RRs[s+(i-1)*10] <- LMU3Rfn(P18_M, P18_F, i/100, 'HWt', paste0('RV',s)) # LMU3Rs (reading)
+    SQDMs[s+(i-1)*10] <- QDfn(P18_M, P18_F, i/100, 'HWt', paste0('MV',s)) / MMADMs[s] * 100 # SQDs (math)
+    SQDRs[s+(i-1)*10] <- QDfn(P18_M, P18_F, i/100, 'HWt', paste0('RV',s)) / MMADRs[s] * 100 # SQDs (reading)
   }
   LMU3RM[i] <- mean(LMU3RMs[(10*i-9):(10*i)]) # LMU3R for each percentile (math)
   LMU3RR[i] <- mean(LMU3RRs[(10*i-9):(10*i)]) # LMU3R for each percentile (reading)
   SQDM[i] <- mean(SQDMs[(10*i-9):(10*i)]) # SQD for each percentile (math)
-  SQDR[i] <- mean(SQDRs[(10*i-9):(10*i)]) # SQD for each percentile (reading)
+  SQDR[i] <- mean(SQDRs[(10*i-9):(10*i)]) # SD for each percentile (reading)
 }
 
 # SQD tail-center shifts (SQDTCs): Med-5, Med-10, 90-Med, 95-Med
@@ -825,6 +840,9 @@ for (i in 1:12) { # for each effect size, up to the appropriate i
 
 WtRatio <- sum(P18_M$HWt)/sum(P18_F$HWt) # M/F weight ratio
 
+MMADM <- mean(MMADMs) # mean MAD (math)
+MMADR <- mean(MMADRs) # mean MAD (reading)
+
 LMU3Rnm <- SQDnm <- numeric(99)
 for (i in 1:99) { # compressed names for LMU3Rs and SQDs
   LMU3Rnm[i] <- paste0('LMU3R',i)
@@ -836,8 +854,8 @@ Names <- c('Country', 'CNT', 'Size', 'FSize', 'MSize', 'M/F Wt Ratio',
            'Mean', 'Median', 'F Mean', 'F Median', 'M Mean', 'M Median', 'Mean Diff', 'Median Diff', 
            'd', 'U3', 'PS', 'SDR', 'SDR_L', 'SDR_R', 'MADR', 'MADR_L', 'MADR_R', 'GMDR',
            'U3R05', 'U3R10', 'U3R90', 'U3R95', 'TPR05', 'TPR10', 'TPR90', 'TPR95', 'MU3R05', 'MU3R10',
-           'MU3R90', 'MU3R95', 'SQDTC05', 'SQDTC10', 'SQDTC90', 'SQDTC95', LMU3Rnm, SQDnm, 'Mean Low',
-           'Mean Upp', 'Median Low', 'Median Upp', 'F Mean Low', 'F Mean Upp', 'F Median Low',
+           'MU3R90', 'MU3R95', 'MMAD', 'SQDTC05', 'SQDTC10', 'SQDTC90', 'SQDTC95', LMU3Rnm, SQDnm,
+           'Mean Low', 'Mean Upp', 'Median Low', 'Median Upp', 'F Mean Low', 'F Mean Upp', 'F Median Low',
            'F Median Upp', 'M Mean Low', 'M Mean Upp', 'M Median Low', 'M Median Upp', 'Mean Diff Low',
            'Mean Diff Upp', 'Med Diff Low', 'Med Diff Upp', 'd Low', 'd Upp', 'U3 Low', 'U3 Upp',
            'PS Low', 'PS Upp', 'SDR Low', 'SDR Upp', 'SDR_L Low', 'SDR_L Upp', 'SDR_R Low', 'SDR_R Upp',
@@ -855,12 +873,12 @@ Names <- c('Country', 'CNT', 'Size', 'FSize', 'MSize', 'M/F Wt Ratio',
            'LMU3R95 TV', 'Age U3', 'Age MADR', 'd A', 'U3 A', 'PS A', 'SDR A', 'SDR_L A', 'SDR_R A',
            'MADR A', 'MADR_L A', 'MADR_R A', 'GMDR A')
 
-MVars <- c(Country, CT, Size, FSize, MSize, WtRatio, MM, EM[1:3], exp(c(EM[4:10], RM)), QM, LMU3RM, SQDM,
-           MMCI, EMCI[1:6], exp(EMCI[7:20]), QMCI, exp(RMCI), EM[4:10], RM[1:8], TVEM, TVQM, TVRM,
+MVars <- c(Country, CT, Size, FSize, MSize, WtRatio, MM, EM[1:3], exp(c(EM[4:10], RM)), MMADM, QM, LMU3RM,
+           SQDM, MMCI, EMCI[1:6], exp(EMCI[7:20]), QMCI, exp(RMCI), EM[4:10], RM[1:8], TVEM, TVQM, TVRM,
            AgeU3, AgeMADR, EMA[1:3], exp(EMA[4:10]))
 
-RVars <- c(Country, CT, Size, FSize, MSize, WtRatio, MR, ER[1:3], exp(c(ER[4:10], RR)), QR, LMU3RR, SQDR,
-           MRCI, ERCI[1:6], exp(ERCI[7:20]), QRCI, exp(RRCI), ER[4:10], RR[1:8], TVER, TVQR, TVRR,
+RVars <- c(Country, CT, Size, FSize, MSize, WtRatio, MR, ER[1:3], exp(c(ER[4:10], RR)), MMADR, QR, LMU3RR,
+           SQDR, MRCI, ERCI[1:6], exp(ERCI[7:20]), QRCI, exp(RRCI), ER[4:10], RR[1:8], TVER, TVQR, TVRR,
            AgeU3, AgeMADR, ERA[1:3], exp(ERA[4:10]))
 
 OutputM <- format(data.frame(Names, MVars), scientific = F) # put math in this
