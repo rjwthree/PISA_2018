@@ -102,8 +102,8 @@ CT <- 'PHL' # Phillipines
 CT <- 'POL' # Poland
 CT <- 'PRT' # Portugal
 CT <- 'QAT' # Qatar
-CT <- 'QMR' # unknown
-CT <- 'QRT' # unknown
+CT <- 'QMR' # Moscow region, Russia
+CT <- 'QRT' # Tatarstan, Russia
 CT <- 'ROU' # Romania
 CT <- 'RUS' # Russia
 CT <- 'SAU' # Saudi Arabia
@@ -140,8 +140,8 @@ CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Baku',
                   'Lithuania', 'Luxembourg', 'Macao', 'Macedonia', 'Malaysia',
                   'Malta', 'Mexico', 'Moldova', 'Montenegro', 'Morocco',
                   'Netherlands', 'New Zealand', 'Norway', 'Panama', 'Peru',
-                  'Phillipines', 'Poland', 'Portugal', 'Qatar', 'Unknown1',
-                  'Unknown2', 'Romania', 'Russia', 'Saudi Arabia', 'Serbia',
+                  'Phillipines', 'Poland', 'Portugal', 'Qatar', 'Moscow region',
+                  'Tatarstan', 'Romania', 'Russia', 'Saudi Arabia', 'Serbia',
                   'Singapore', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
                   'Switzerland', 'Taiwan', 'Thailand', 'Turkey', 'Ukraine',
                   'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Vietnam')
