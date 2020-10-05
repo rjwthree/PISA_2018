@@ -79,7 +79,7 @@ CT <- 'ITA' # Italy
 CT <- 'JPN' # Japan
 CT <- 'JOR' # Jordan
 CT <- 'KAZ' # Kazakhstan
-CT <- 'KOR' # Korea
+CT <- 'KOR' # South Korea
 CT <- 'KSV' # Kosovo
 CT <- 'LVA' # Latvia
 CT <- 'LBN' # Lebanon
@@ -136,7 +136,7 @@ CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Baku',
                   'Estonia', 'Finland', 'France', 'Georgia', 'Germany',
                   'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'Indonesia',
                   'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
-                  'Kazakhstan', 'Korea', 'Kosovo', 'Latvia', 'Lebanon',
+                  'Kazakhstan', 'South Korea', 'Kosovo', 'Latvia', 'Lebanon',
                   'Lithuania', 'Luxembourg', 'Macao', 'Macedonia', 'Malaysia',
                   'Malta', 'Mexico', 'Moldova', 'Montenegro', 'Morocco',
                   'Netherlands', 'New Zealand', 'Norway', 'Panama', 'Peru',
