@@ -85,7 +85,7 @@ CT <- 'LVA' # Latvia
 CT <- 'LBN' # Lebanon
 CT <- 'LTU' # Lithuania
 CT <- 'LUX' # Luxembourg
-CT <- 'MAC' # Macao, China
+CT <- 'MAC' # Macao, China*
 CT <- 'MKD' # Macedonia
 CT <- 'MYS' # Malaysia
 CT <- 'MLT' # Malta
