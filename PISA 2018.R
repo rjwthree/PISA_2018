@@ -42,13 +42,13 @@ library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 
 
-# manually subset a polity
+# manually subset a polity (* indicates a region or group of regions)
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
 CT <- 'AUT' # Austria
-CT <- 'QAZ' # Baku, Azerbaijan
-CT <- 'QCI' # B-S-J-Z, China (Beijing, Shanghai, Jiangsu, Zhejiang)
+CT <- 'QAZ' # Baku, Azerbaijan*
+CT <- 'QCI' # B-S-J-Z, China (Beijing, Shanghai, Jiangsu, Zhejiang)*
 CT <- 'BLR' # Belarus
 CT <- 'BEL' # Belgium
 CT <- 'BIH' # Bosnia and Herzegovina
@@ -69,7 +69,7 @@ CT <- 'FRA' # France
 CT <- 'GEO' # Georgia
 CT <- 'DEU' # Germany
 CT <- 'GRC' # Greece
-CT <- 'HKG' # Hong Kong, China
+CT <- 'HKG' # Hong Kong, China*
 CT <- 'HUN' # Hungary
 CT <- 'ISL' # Iceland
 CT <- 'IDN' # Indonesia
@@ -102,8 +102,8 @@ CT <- 'PHL' # Phillipines
 CT <- 'POL' # Poland
 CT <- 'PRT' # Portugal
 CT <- 'QAT' # Qatar
-CT <- 'QMR' # Moscow region, Russia
-CT <- 'QRT' # Tatarstan, Russia
+CT <- 'QMR' # Moscow region, Russia*
+CT <- 'QRT' # Tatarstan, Russia*
 CT <- 'ROU' # Romania
 CT <- 'RUS' # Russia
 CT <- 'SAU' # Saudi Arabia
