@@ -79,7 +79,6 @@ CT <- 'ITA' # Italy
 CT <- 'JPN' # Japan
 CT <- 'JOR' # Jordan
 CT <- 'KAZ' # Kazakhstan
-CT <- 'KOR' # South Korea
 CT <- 'KSV' # Kosovo
 CT <- 'LVA' # Latvia
 CT <- 'LBN' # Lebanon
@@ -111,6 +110,7 @@ CT <- 'SRB' # Serbia
 CT <- 'SGP' # Singapore
 CT <- 'SVK' # Slovakia
 CT <- 'SVN' # Slovenia
+CT <- 'KOR' # South Korea
 CT <- 'ESP' # Spain
 CT <- 'SWE' # Sweden
 CT <- 'CHE' # Switzerland
