@@ -158,8 +158,6 @@ Country <- as.character(CNT[,CT])
 
 P18 <- data.frame(PISA18[CNT == CT])[,c(4, 18, 944, 835, 1027:1046, 945:1024)] # subset
 
-remove(PISA18) # remove unneeded object
-
 colnms <- numeric(80)
 for (i in 1:80) {colnms[i] <- paste0('FW',i)} # Fay's replicate weight columns: FW1-FW80
 
