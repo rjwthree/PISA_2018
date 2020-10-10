@@ -41,8 +41,6 @@ write.csv(x = PISA18, file = 'PISA input/2018.csv') # store it as a csv
 library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 
-
-# manually subset a polity (* indicates a region or group of regions)
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
@@ -92,6 +90,7 @@ CT <- 'MEX' # Mexico
 CT <- 'MDA' # Moldova
 CT <- 'MNE' # Montenegro
 CT <- 'MAR' # Morocco
+CT <- 'QMR' # Moscow region, Russia*
 CT <- 'NLD' # Netherlands
 CT <- 'NZL' # New Zealand
 CT <- 'NOR' # Norway
@@ -101,8 +100,6 @@ CT <- 'PHL' # Phillipines
 CT <- 'POL' # Poland
 CT <- 'PRT' # Portugal
 CT <- 'QAT' # Qatar
-CT <- 'QMR' # Moscow region, Russia*
-CT <- 'QRT' # Tatarstan, Russia*
 CT <- 'ROU' # Romania
 CT <- 'RUS' # Russia
 CT <- 'SAU' # Saudi Arabia
@@ -115,6 +112,7 @@ CT <- 'ESP' # Spain
 CT <- 'SWE' # Sweden
 CT <- 'CHE' # Switzerland
 CT <- 'TAP' # Taiwan
+CT <- 'QRT' # Tatarstan, Russia*
 CT <- 'THA' # Thailand
 CT <- 'TUR' # Turkey
 CT <- 'UKR' # Ukraine
@@ -138,21 +136,21 @@ CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Baku',
                   'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
                   'Kazakhstan', 'Kosovo', 'Latvia', 'Lebanon', 'Lithuania',
                   'Luxembourg', 'Macao', 'Macedonia', 'Malaysia', 'Malta',
-                  'Mexico', 'Moldova', 'Montenegro', 'Morocco', 'Netherlands',
-                  'New Zealand', 'Norway', 'Panama', 'Peru', 'Phillipines',
-                  'Poland', 'Portugal', 'Qatar', 'Moscow region', 'Tatarstan',
-                  'Romania', 'Russia', 'Saudi Arabia', 'Serbia', 'Singapore',
-                  'Slovakia', 'Slovenia', 'South Korea', 'Spain', 'Sweden',
-                  'Switzerland', 'Taiwan', 'Thailand', 'Turkey', 'Ukraine',
+                  'Mexico', 'Moldova', 'Montenegro', 'Morocco', 'Moscow region',
+                  'Netherlands', 'New Zealand', 'Norway', 'Panama', 'Peru',
+                  'Phillipines', 'Poland', 'Portugal', 'Qatar', 'Romania',
+                  'Russia', 'Saudi Arabia', 'Serbia', 'Singapore', 'Slovakia',
+                  'Slovenia', 'South Korea', 'Spain', 'Sweden', 'Switzerland',
+                  'Taiwan', 'Tatarstan', 'Thailand', 'Turkey', 'Ukraine',
                   'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Vietnam')
 names(CNT) <- c('ALB', 'ARG', 'AUS', 'AUT', 'QAZ', 'QCI', 'BLR', 'BEL', 'BIH', 'BRA',
                 'BRN', 'BGR', 'CAN', 'CHL', 'COL', 'CRI', 'HRV', 'CZE', 'DNK', 'DOM',
                 'EST', 'FIN', 'FRA', 'GEO', 'DEU', 'GRC', 'HKG', 'HUN', 'ISL', 'IDN',
                 'IRL', 'ISR', 'ITA', 'JPN', 'JOR', 'KAZ', 'KSV', 'LVA', 'LBN', 'LTU',
-                'LUX', 'MAC', 'MKD', 'MYS', 'MLT', 'MEX', 'MDA', 'MNE', 'MAR', 'NLD',
-                'NZL', 'NOR', 'PAN', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'QMR', 'QRT',
-                'ROU', 'RUS', 'SAU', 'SRB', 'SGP', 'SVK', 'SVN', 'KOR', 'ESP', 'SWE',
-                'CHE', 'TAP', 'THA', 'TUR', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'VNM')
+                'LUX', 'MAC', 'MKD', 'MYS', 'MLT', 'MEX', 'MDA', 'MNE', 'MAR', 'QMR',
+                'NLD', 'NZL', 'NOR', 'PAN', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'ROU',
+                'RUS', 'SAU', 'SRB', 'SGP', 'SVK', 'SVN', 'KOR', 'ESP', 'SWE', 'CHE',
+                'TAP', 'QRT', 'THA', 'TUR', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'VNM')
 
 Country <- as.character(CNT[,CT])
 
