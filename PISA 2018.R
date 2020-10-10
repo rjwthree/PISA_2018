@@ -34,6 +34,10 @@
 
 #### Select Country ####
 
+# Vietnam (VNM) plausible values are in a separate file
+# Spanish reading data contain a small fraction of documented low-effort tests
+# for details, see https://www.oecd.org/pisa/PISA2018-AnnexA9-Spain.pdf
+
 library(haven) # read SPSS
 PISA18 <- read_spss('PISA/CY07_MSU_STU_QQQ.sav') # read data
 write.csv(x = PISA18, file = 'PISA input/2018.csv') # store it as a csv
