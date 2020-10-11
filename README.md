@@ -7,6 +7,8 @@ The full output from all 74 countries and 6 regions is available for [math](http
 
 Three measures of sex differences in variability are visualized for [math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(math).png) and [reading](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(reading).png), and one country for each decile is selected to represent the distribution of results. Notably, all nine deciles for both math and reading show larger variability in males than females.
 
+Another measure of variability that can be observed at every point throughout the distribution is the standardized quantile difference (SQD). If the male distribution is more dispersed, we would expect comparisons to be most favorable in the right tail and least favorable in the left tail. Confirming this prediction, the smoothly increasing trend shown [here](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/SQDs.png) for both math and reading indicates greater male variability in both tails. 
+
 ## Code
 
 The script proceeds as follows:
