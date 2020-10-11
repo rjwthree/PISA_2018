@@ -3,7 +3,9 @@ This script analyzes the most recently released data on exams given to 15-year-o
 
 ## Results
 
-The full output from all 74 countries and 6 regions is available for [math](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(math).csv) and [reading](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(reading).csv) in csv files, but is difficult to read because there are so many analyses and countries. I've started to visualize the results.
+The full output from all 74 countries and 6 regions is available for [math](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(math).csv) and [reading](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(reading).csv) in csv files, but is difficult to read because there are so many analyses and countries. I've started to visualize the results - see below for definitions of all my effect sizes.
+
+Three measures of sex differences in variability are visualized for [math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(math).png) and [reading](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(reading).png), and one country for each decile is selected to represent the distribution of results. Notably, all nine deciles for both math and reading show larger variability in males than females.
 
 ## Code
 
