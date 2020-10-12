@@ -9,6 +9,8 @@ Three measures of sex differences in variability are visualized for [math](https
 
 Another measure of variability that can be observed at every point throughout the distribution is the standardized quantile difference (SQD). If the male distribution is more widely dispersed, we would expect comparisons to be least favorable to males in the left tail and most favorable in the right tail, and so male-female differences would become more positive from left to right. Confirming this prediction in the aggregate of all 74 countries, the smoothly increasing trend [shown here](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/SQDs.png) for both math and reading indicates greater male variability in both tails.
 
+Median-aligned U3 ratios (MU3Rs) also illustrate differences in variability throughout the distribution. A U shape - decreasing to the left of the median, increasing to the right - would indicate greater male variability, and this is clearly observed in the [plot of MU3Rs](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/MU3Rs.png) for both math and reading scores.
+
 ## Code
 
 The script proceeds as follows:
