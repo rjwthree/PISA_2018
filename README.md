@@ -3,9 +3,11 @@ This script analyzes sex differences in the most recently released data on exams
 
 ## Results
 
-The full output from all 74 countries and 6 regions is available for [math](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(math).csv) and [reading](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(reading).csv) in csv files, but is difficult to read because there are so many analyses and countries. I've started to visualize the results - see below for definitions of all my effect sizes.
+The full output from all 74 countries and 6 regions is available for [math](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(math).csv) and [reading](https://github.com/rjwthree/PISA_2018/blob/master/Full%20output%20(reading).csv) in csv files, but is difficult to read because there are so many analyses and countries. I've visualized some of the results - see below for definitions of all my effect sizes.
 
 #### Central tendency differences
+
+The differences for reading are straightforward: by all three measures, females had an [advantage](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(reading).png) in all 74 countries. In the median country, only 38% of male scores exceeded the female median score. Males had an [advantage in mathematics](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(math).png) in about two-thirds of countries, with a median of 52% of males scoring in excess of the median female.
 
 #### Variability differences
 
