@@ -17,6 +17,10 @@ Median-aligned U3 ratios (MU3Rs) also illustrate differences in variability thro
 
 #### Tail differences
 
+Males predominate among the lowest scores in reading. Below the 5th percentile, the median country has more than twice as many males. The deciles are displayed here. Below the 5th percentile of math scores, males also predominate most but not all of the time, and at the median country they are only 10% more prevalent.
+
+
+
 ## Code
 
 The script proceeds as follows:
