@@ -48,6 +48,7 @@ library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 VNM18 <- fread('PISA input/2018VNM.csv')[,-1] # load Vietnam PVs with data.table
 
+# manually subset a polity (* indicates a region or group of regions)
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
