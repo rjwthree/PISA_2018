@@ -38,12 +38,15 @@
 # Spanish reading data contain a small fraction of documented low-effort tests
 # for details, see https://www.oecd.org/pisa/PISA2018-AnnexA9-Spain.pdf
 
-library(haven) # read SPSS
+library(haven) # read SPSS once
 PISA18 <- read_spss('PISA/CY07_MSU_STU_QQQ.sav') # read data
-write.csv(x = PISA18, file = 'PISA input/2018.csv') # store it as a csv
+VNM18 <- read_spss('PISA/CY07_VNM_STU_PVS.sav') # read Vietnam PVs
+write.csv(x = PISA18, file = 'PISA input/2018.csv') # store data as a csv
+write.csv(x = VNM18, file = 'PISA input/2018VNM.csv') # store Vietnam PVs as a csv
 
 library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
+VNM18 <- fread('PISA input/2018VNM.csv')[,-1] # load Vietnam PVs with data.table
 
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
@@ -158,7 +161,13 @@ names(CNT) <- c('ALB', 'ARG', 'AUS', 'AUT', 'QAZ', 'QCI', 'BLR', 'BEL', 'BIH', '
 
 Country <- as.character(CNT[,CT])
 
-P18 <- data.frame(PISA18[CNT == CT])[,c(4, 18, 944, 835, 1027:1046, 945:1024)] # subset
+if (CT == 'VNM') { # for Vietnam
+  P18 <- cbind(data.frame(PISA18[CNT == 'VNM'])[,c(4, 18, 944, 835)], # ID, sex, weight, age
+               data.frame(VNM18)[,c(1027:1046)], # PVs
+               data.frame(PISA18[CNT == 'VNM'])[,c(945:1024)]) # replicate weights
+} else { # for all others
+  P18 <- data.frame(PISA18[CNT == CT])[,c(4, 18, 944, 835, 1027:1046, 945:1024)] # subset
+}
 
 colnms <- numeric(80)
 for (i in 1:80) {colnms[i] <- paste0('FW',i)} # Fay's replicate weight columns: FW1-FW80
