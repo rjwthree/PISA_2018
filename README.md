@@ -31,7 +31,7 @@ Females predominate among those with [reading scores above the 95th percentile](
 
 ## Code
 
-The script proceeds as follows:
+The [script](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R) proceeds as follows:
 
 (1) Read and Format Data
 
@@ -49,10 +49,10 @@ The data are complex for two reasons: (1) each student responds to only a subset
 
 Ratios are log-transformed to place them on a linear scale.
 
-## Read and Format Data
+## [Read and Format Data](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L32)
 The data are read from SPSS format using the 'haven' package and written in csv format so that subsequent reading can occur efficiently with the 'data.table' package. A country is subsetted and its data are converted to a dataframe. Some objects are created that will be needed throughout the script.
 
-## Weighted Functions
+## [Weighted Functions](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L193)
 All functions used for analysis are user-defined, for a few reasons:
 
 (1) Some functions were not available, especially for weighted statistics and effect sizes I created because I wasn't aware of any that were suitable (see next section).
@@ -61,7 +61,7 @@ All functions used for analysis are user-defined, for a few reasons:
 
 (3) User-defined functions are entirely transparent and explicit, which is particularly good when different packages produce slightly different results due to differing methods.
 
-## Effect Sizes
+## [Effect Sizes](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L492)
 *Effect sizes with an asterisk are novel; they were adapted from other statistics.
 
 Means and Medians - Means and medians of total group, females, and males, as well as male-female mean and median differences.
@@ -90,9 +90,9 @@ Median-aligned U3 Ratios (MU3Rs)* - U3Rs calculated after aligning the male and 
 
 Standardized Quantile Differences (SQDs)* - Raw male-female differences at each percentile, as a percentage of the mean of male and female MADs. An increasing trend from left to right indicates higher male variability; a decreasing trend indicates higher female variability. The purpose of dividing by MAD is to standardize the quantile differences with a robust measure of scale.
 
-The next section adjusts the scores linearly for age and recalculates the effect sizes from Cohen's d to GMDR.
+The next [section](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L616) adjusts the scores linearly for age and recalculates the effect sizes from Cohen's d to GMDR.
 
-## Standard Errors and Confidence Intervals
+## [Standard Errors and Confidence Intervals](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L700)
 Computing standard errors is the most computationally intensive procedure. The use of 80 sets of replicate weights, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to procedures described by the '[PISA 2018 Technical Report](https://www.oecd.org/pisa/data/pisa2018technicalreport/)'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
 
 The results are then summarized in two dataframes, one each for math and reading, and written to the appropriate directory.
