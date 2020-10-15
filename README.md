@@ -13,7 +13,7 @@ The plot of [SQDs](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/S
 
 #### Central tendency differences
 
-The differences for reading are straightforward: by all three measures, females had an [advantage](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(reading).png) in all 74 countries. In the median country, only 38% of male scores exceeded the median female score. Males had an [advantage in mathematics](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(math).png) in about two-thirds of countries, with a median of 52% of males scoring in excess of the median female.
+The differences for reading are straightforward: by all three measures, females had an [advantage](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(reading).png) in all 74 countries. In the median country, only 38% of male scores exceeded the median female score. Males had an [advantage in mathematics](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Central%20tendency%20(math).png) in about two-thirds of countries, with a median of 52% of males scoring above the median female.
 
 #### Variability differences
 
