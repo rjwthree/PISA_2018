@@ -49,10 +49,10 @@ The data are complex for two reasons: (1) each student responds to only a subset
 
 Ratios are log-transformed to place them on a linear scale.
 
-## [Read and Format Data](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L32)
+### [Read and Format Data](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L32)
 The data are read from SPSS format using the 'haven' package and written in csv format so that subsequent reading can occur efficiently with the 'data.table' package. A country is subsetted and its data are converted to a dataframe. Some objects are created that will be needed throughout the script.
 
-## [Weighted Functions](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L193)
+### [Weighted Functions](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L193)
 All functions used for analysis are user-defined, for a few reasons:
 
 (1) Some functions were not available, especially for weighted statistics and effect sizes I created because I wasn't aware of any that were suitable (see next section).
@@ -61,7 +61,7 @@ All functions used for analysis are user-defined, for a few reasons:
 
 (3) User-defined functions are entirely transparent and explicit, which is particularly good when different packages produce slightly different results due to differing methods.
 
-## [Effect Sizes](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L492)
+### [Effect Sizes](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L492)
 *Effect sizes with an asterisk are novel; they were adapted from other statistics.
 
 Means and Medians - Means and medians of total group, females, and males, as well as male-female mean and median differences.
@@ -92,7 +92,7 @@ Standardized Quantile Differences (SQDs)* - Raw male-female differences at each 
 
 The next [section](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L616) adjusts the scores linearly for age and recalculates the effect sizes from Cohen's d to GMDR.
 
-## [Standard Errors and Confidence Intervals](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L700)
+### [Standard Errors and Confidence Intervals](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L700)
 Computing standard errors is the most computationally intensive procedure. The use of 80 sets of replicate weights, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to procedures described by the '[PISA 2018 Technical Report](https://www.oecd.org/pisa/data/pisa2018technicalreport/)'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
 
 The results are then [summarized](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L847) in two dataframes, one each for math and reading, and written to the appropriate directory.
