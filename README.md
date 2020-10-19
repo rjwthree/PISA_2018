@@ -39,7 +39,7 @@ Although flawed, the World Economic Forum's Global Gender Gap Index (GGGI) is ar
 
 Higher GGGI scores indicate that a country is closer to gender equality. Spearman's correlation coefficient will be used here because non-parametric statistics are most suitable.
 
-The correlation with mean and median scores in both math and reading was about 0.4, whether it was the total, female, or male scores. This is consistent with an association between gender equality and greater human development in general. The correlation with sex differences at the center - U3 and probability of superiority - is .25-.28 in math and about .21 in reading. That is, there is a mild tendency for males to perform better relative to females in more gender-equal countries.
+The correlation with mean and median scores in both math and reading are about 0.4, whether it be the total, female, or male scores. This is consistent with an association between gender equality and greater human development in general. The correlation with sex differences at the center - U3 and probability of superiority - is .25-.28 in math and about .21 in reading. That is, there is a mild tendency for males to perform better relative to females in more gender-equal countries.
 
 Countries with higher gender inequality tend to have males overrepresented to a greater degree in the bottom 5% and 10% of both math and reading scores (correlations roughly -0.2). There is no relation in the right tail of reading. With regard to the top 5% and 10% of math scores, males are more strongly overrepresented in more gender-equal countries (correlations of .21 and .25, respectively).
 
