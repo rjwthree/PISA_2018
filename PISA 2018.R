@@ -136,30 +136,30 @@ CT <- 'QRT' # Tatarstan, Russia
 #### Create Objects ####
 
 # lookup table
-CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Baku',
-                  'B-S-J-Z', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Brazil',
-                  'Brunei Darussalam', 'Bulgaria', 'Canada', 'Chile', 'Colombia',
-                  'Costa Rica', 'Croatia', 'Czech Republic', 'Denmark', 'Dominican Republic',
-                  'Estonia', 'Finland', 'France', 'Georgia', 'Germany',
-                  'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'Indonesia',
-                  'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan',
-                  'Kazakhstan', 'Kosovo', 'Latvia', 'Lebanon', 'Lithuania',
-                  'Luxembourg', 'Macao', 'Macedonia', 'Malaysia', 'Malta',
-                  'Mexico', 'Moldova', 'Montenegro', 'Morocco', 'Moscow region',
+CNT <- data.frame('Albania', 'Argentina', 'Australia', 'Austria', 'Belarus',
+                  'Belgium', 'Bosnia and Herzegovina', 'Brazil', 'Brunei Darussalam', 'Bulgaria',
+                  'Canada', 'Chile', 'Colombia', 'Costa Rica', 'Croatia',
+                  'Czech Republic', 'Denmark', 'Dominican Republic', 'Estonia', 'Finland',
+                  'France', 'Georgia', 'Germany', 'Greece', 'Hungary',
+                  'Iceland', 'Indonesia', 'Ireland', 'Israel', 'Italy',
+                  'Japan', 'Jordan', 'Kazakhstan', 'Kosovo', 'Latvia',
+                  'Lebanon', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malaysia',
+                  'Malta', 'Mexico', 'Moldova', 'Montenegro', 'Morocco',
                   'Netherlands', 'New Zealand', 'Norway', 'Panama', 'Peru',
                   'Phillipines', 'Poland', 'Portugal', 'Qatar', 'Romania',
                   'Russia', 'Saudi Arabia', 'Serbia', 'Singapore', 'Slovakia',
                   'Slovenia', 'South Korea', 'Spain', 'Sweden', 'Switzerland',
-                  'Taiwan', 'Tatarstan', 'Thailand', 'Turkey', 'Ukraine',
-                  'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Vietnam')
-names(CNT) <- c('ALB', 'ARG', 'AUS', 'AUT', 'QAZ', 'QCI', 'BLR', 'BEL', 'BIH', 'BRA',
-                'BRN', 'BGR', 'CAN', 'CHL', 'COL', 'CRI', 'HRV', 'CZE', 'DNK', 'DOM',
-                'EST', 'FIN', 'FRA', 'GEO', 'DEU', 'GRC', 'HKG', 'HUN', 'ISL', 'IDN',
-                'IRL', 'ISR', 'ITA', 'JPN', 'JOR', 'KAZ', 'KSV', 'LVA', 'LBN', 'LTU',
-                'LUX', 'MAC', 'MKD', 'MYS', 'MLT', 'MEX', 'MDA', 'MNE', 'MAR', 'QMR',
-                'NLD', 'NZL', 'NOR', 'PAN', 'PER', 'PHL', 'POL', 'PRT', 'QAT', 'ROU',
-                'RUS', 'SAU', 'SRB', 'SGP', 'SVK', 'SVN', 'KOR', 'ESP', 'SWE', 'CHE',
-                'TAP', 'QRT', 'THA', 'TUR', 'UKR', 'ARE', 'GBR', 'USA', 'URY', 'VNM')
+                  'Taiwan', 'Thailand', 'Turkey', 'Ukraine', 'United Arab Emirates',
+                  'United Kingdom', 'United States', 'Uruguay', 'Vietnam', 'Baku',
+                  'B-S-J-Z', 'Hong Kong', 'Macao', 'Moscow region', 'Tatarstan')
+names(CNT) <- c('ALB', 'ARG', 'AUS', 'AUT', 'BLR', 'BEL', 'BIH', 'BRA', 'BRN', 'BGR',
+                'CAN', 'CHL', 'COL', 'CRI', 'HRV', 'CZE', 'DNK', 'DOM', 'EST', 'FIN',
+                'FRA', 'GEO', 'DEU', 'GRC', 'HUN', 'ISL', 'IDN', 'IRL', 'ISR', 'ITA',
+                'JPN', 'JOR', 'KAZ', 'KSV', 'LVA', 'LBN', 'LTU', 'LUX', 'MKD', 'MYS',
+                'MLT', 'MEX', 'MDA', 'MNE', 'MAR', 'NLD', 'NZL', 'NOR', 'PAN', 'PER',
+                'PHL', 'POL', 'PRT', 'QAT', 'ROU', 'RUS', 'SAU', 'SRB', 'SGP', 'SVK',
+                'SVN', 'KOR', 'ESP', 'SWE', 'CHE', 'TAP', 'THA', 'TUR', 'UKR', 'ARE',
+                'GBR', 'USA', 'URY', 'VNM', 'QAZ', 'QCI', 'HKG', 'MAC', 'QMR', 'QRT')
 
 Country <- as.character(CNT[,CT])
 
