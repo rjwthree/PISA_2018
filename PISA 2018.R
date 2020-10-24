@@ -48,13 +48,11 @@ library(data.table) # efficient reading
 PISA18 <- fread('PISA input/2018.csv')[,-1] # load all PISA 2018 with data.table
 VNM18 <- fread('PISA input/2018VNM.csv')[,-1] # load Vietnam PVs with data.table
 
-# manually subset a polity (* indicates a region or group of regions)
+# manually subset a polity (regions at the end)
 CT <- 'ALB' # Albania
 CT <- 'ARG' # Argentina
 CT <- 'AUS' # Australia
 CT <- 'AUT' # Austria
-CT <- 'QAZ' # Baku, Azerbaijan*
-CT <- 'QCI' # B-S-J-Z, China (Beijing, Shanghai, Jiangsu, Zhejiang)*
 CT <- 'BLR' # Belarus
 CT <- 'BEL' # Belgium
 CT <- 'BIH' # Bosnia and Herzegovina
@@ -75,7 +73,6 @@ CT <- 'FRA' # France
 CT <- 'GEO' # Georgia
 CT <- 'DEU' # Germany
 CT <- 'GRC' # Greece
-CT <- 'HKG' # Hong Kong, China*
 CT <- 'HUN' # Hungary
 CT <- 'ISL' # Iceland
 CT <- 'IDN' # Indonesia
@@ -90,7 +87,6 @@ CT <- 'LVA' # Latvia
 CT <- 'LBN' # Lebanon
 CT <- 'LTU' # Lithuania
 CT <- 'LUX' # Luxembourg
-CT <- 'MAC' # Macao, China*
 CT <- 'MKD' # Macedonia
 CT <- 'MYS' # Malaysia
 CT <- 'MLT' # Malta
@@ -98,7 +94,6 @@ CT <- 'MEX' # Mexico
 CT <- 'MDA' # Moldova
 CT <- 'MNE' # Montenegro
 CT <- 'MAR' # Morocco
-CT <- 'QMR' # Moscow region, Russia*
 CT <- 'NLD' # Netherlands
 CT <- 'NZL' # New Zealand
 CT <- 'NOR' # Norway
@@ -120,7 +115,6 @@ CT <- 'ESP' # Spain
 CT <- 'SWE' # Sweden
 CT <- 'CHE' # Switzerland
 CT <- 'TAP' # Taiwan
-CT <- 'QRT' # Tatarstan, Russia*
 CT <- 'THA' # Thailand
 CT <- 'TUR' # Turkey
 CT <- 'UKR' # Ukraine
@@ -129,6 +123,13 @@ CT <- 'GBR' # United Kingdom
 CT <- 'USA' # United States
 CT <- 'URY' # Uruguay
 CT <- 'VNM' # Vietnam
+
+CT <- 'QAZ' # Baku, Azerbaijan
+CT <- 'QCI' # B-S-J-Z, China (Beijing, Shanghai, Jiangsu, Zhejiang)
+CT <- 'HKG' # Hong Kong, China
+CT <- 'MAC' # Macao, China
+CT <- 'QMR' # Moscow region, Russia
+CT <- 'QRT' # Tatarstan, Russia
 
 
 
