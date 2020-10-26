@@ -1,7 +1,7 @@
 # Sex Differences in PISA 2018 Math and Reading Data
 This script analyzes sex differences in the most recently released data on exams given to 15-year-olds from the [Programme for International Student Assessment (PISA)](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R). It is administered every three years by the Organisation for Economic Co-operation and Development (OECD). http://www.oecd.org/pisa
 
-The first major section describes the results; the second section describes the code and some of the statistics. See [here](https://github.com/rjwthree/TIMSS_PIRLS) for PISA's sister projects.
+The first major section describes the results; the second section describes the code and some of the statistics. See [here](https://github.com/rjwthree/TIMSS_PIRLS) for similar assessments of younger children.
 
 ## Results
 
