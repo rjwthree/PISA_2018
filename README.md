@@ -21,7 +21,7 @@ The differences for reading are straightforward: by all three measures, females 
 
 Males predominate among the lowest scores in reading. Below the 5th percentile, the median country has more than twice as many males. The deciles are [displayed here](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Left%20tail%20(reading).png). Below the 5th percentile of math scores, males also predominate [most but not all of the time](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Left%20tail%20(math).png), and at the median country they are only 10% more prevalent.
 
-Females predominate among those with [reading scores above the 95th percentile](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(reading).png), and in the median country females are about 50% more likely to score in that stratum. Males are disproportionately represented among the [top 5% of scores in math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/RIght%20tail%20(math).png) at all nine deciles, with a median difference of about 40%.
+Females predominate among those with [reading scores above the 95th percentile](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(reading).png), and in the median country females are about 50% more likely to score in that stratum. Males are disproportionately represented among the [top 5% of scores in math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(math).png) at all nine deciles, with a median difference of about 40%.
 
 #### Variability differences
 
