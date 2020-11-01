@@ -71,13 +71,7 @@ Ratios are log-transformed to place them on a linear scale.
 The data are read from SPSS format using the 'haven' package and written in csv format so that subsequent reading can occur efficiently with the 'data.table' package. A country is subsetted and its data are converted to a dataframe. Some objects are created that will be needed throughout the script.
 
 ### [Weighted Functions](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L193)
-All functions used for analysis are user-defined, for a few reasons:
-
-(1) Some functions were not available, especially for weighted statistics and effect sizes I created because I wasn't aware of any that were suitable (see next section).
-
-(2) Some existing functions were inefficient and runtime was far too long because of the large sample sizes and extensive repetition during Fay's balanced repeated replication. All efforts were made to maximize the functions' efficiency.
-
-(3) User-defined functions are entirely transparent and explicit, which is particularly good when different packages produce slightly different results due to differing methods.
+All functions used for analysis are user-defined, for various reasons related to transparency, efficiency, and necessity - some effect sizes had to be created because I wasn't aware of any that were suitable (see next section).
 
 ### [Effect Sizes](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L492)
 *Effect sizes with an asterisk are novel; they were adapted from other statistics.
