@@ -677,3 +677,23 @@ ggplot(data, aes(x = Percentile, y = SQD, group = interaction(Subject, Quarter))
   scale_linetype_manual(values = c(61, 'solid'))
 
 dev.off() # write image to working directory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
