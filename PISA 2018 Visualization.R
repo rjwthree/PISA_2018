@@ -417,7 +417,7 @@ data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (left tail), math.png', width = 9, height = 9,
+tiff(filename = 'Variability (left tail, math).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
@@ -455,7 +455,7 @@ data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (left tail), reading.png', width = 9, height = 9,
+tiff(filename = 'Variability (left tail, reading).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
@@ -493,7 +493,7 @@ data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (right tail), math.png', width = 9, height = 9,
+tiff(filename = 'Variability (right tail, math).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
@@ -531,7 +531,7 @@ data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (right tail), reading.png', width = 9, height = 9,
+tiff(filename = 'Variability (right tail, reading).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
@@ -549,7 +549,8 @@ ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
 dev.off() # write image to working directory
 
 
-## SQDs and MU3Rs
+# MU3Rs and SQDs
+
 q <- k <- a <- b <- numeric(99)
 for (i in 1:99) {q[i] <- mean(as.numeric(P18M[i+138,-1]))} # SQDs math
 for (i in 1:99) {k[i] <- mean(as.numeric(P18R[i+138,-1]))} # SQDs reading
