@@ -18,7 +18,6 @@ for (i in 1:9) {p[i] <- ceiling(74*i/10)} # ranks above or equal to each decile
 ### Central tendency differences ###
 
 # math
-
 cap <- paste0('Three measures of sex differences in central tendency are ',
               'plotted for nine countries: U3, probability of superiority ',
               '(PS), and Cohen\'s d. They are expressed on different scales, so ',
@@ -52,12 +51,8 @@ CNT <- c('Iceland', 'Domin. Rep.', 'Moldova', 'Netherlands',
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 9),
                                     levels = CNT),
-                   ratio = factor(rep(rep(c('U3','PS','d'), each = 3), 9),
+                   ratio = factor(rep(c('U3','PS','d'), each = 3, 9),
                                   levels = c('U3','PS','d')))
-
-cooler <- rep(c('#E82728', alpha('gray', .4), alpha('gray', .4),
-                alpha('gray', .4), '#FF6C00', alpha('gray', .4),
-                alpha('gray', .4), alpha('gray', .4), '#8000FF'), times = 9)
 
 yscl <- list(
   U3 = scale_y_continuous(limits = c(45.5, 55.1), breaks = seq(46, 54, 2),
@@ -67,12 +62,16 @@ yscl <- list(
   d = scale_y_continuous(limits = c(-.11304, .12819), breaks = seq(-.1, .1, .05))
 )
 
+gray3 <- rep(alpha('gray', .4), 3) # color for shadows
+
 tiff(filename = 'Central tendency (math).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+
 # the facetscales package enables control over all axes individually
 # with ggplot alone, the line would be: facet_grid(ratio ~ country, scales = 'free_y')
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
-  geom_point(colour = cooler, shape = 1, size = 5) +
+  geom_point(colour = rep(c('#E82728', gray3, '#FF6C00', gray3, '#8000FF'), 9),
+             shape = 1, size = 5) +
   facet_grid_sc(rows = vars(ratio), cols = vars(country), scales = list(y = yscl)) +
   ggtitle('Sex Differences in Central Tendency in PISA 2018 Math — deciles') +
   theme(text = element_text(family = 'Optima'),
@@ -86,7 +85,6 @@ dev.off() # write image to working directory
 
 
 # reading
-
 cap <- paste0('Three measures of sex differences in central tendency are ',
               'plotted for nine countries: U3, probability of superiority ',
               '(PS), and Cohen\'s d. They are expressed on different scales, so ',
@@ -120,12 +118,8 @@ CNT <- c('Singapore', 'Italy', 'Russia', 'Lebanon', 'Brunei',
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 9),
                                     levels = CNT),
-                   ratio = factor(rep(rep(c('U3','PS','d'), each = 3), 9),
+                   ratio = factor(rep(c('U3','PS','d'), each = 3, 9),
                                   levels = c('U3','PS','d')))
-
-cooler <- rep(c('#E82728', alpha('gray', .4), alpha('gray', .4),
-                alpha('gray', .4), '#FF6C00', alpha('gray', .4),
-                alpha('gray', .4), alpha('gray', .4), '#8000FF'), times = 9)
 
 yscl <- list(
   U3 = scale_y_continuous(limits = c(29.792, 43), breaks = seq(30, 42, 4),
@@ -135,12 +129,16 @@ yscl <- list(
   d = scale_y_continuous(limits = c(-.53039, -.17637), breaks = seq(-.5, -.2, .1))
 )
 
+gray3 <- rep(alpha('gray', .4), 3) # color for shadows
+
 tiff(filename = 'Central tendency (reading).png', width = 9, height = 9,
      units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+
 # the facetscales package enables control over all axes individually
 # with ggplot alone, the line would be: facet_grid(ratio ~ country, scales = 'free_y')
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
-  geom_point(colour = cooler, shape = 1, size = 5) +
+  geom_point(colour = rep(c('#E82728', gray3, '#FF6C00', gray3, '#8000FF'), 9),
+             shape = 1, size = 5) +
   facet_grid_sc(rows = vars(ratio), cols = vars(country), scales = list(y = yscl)) +
   ggtitle('Sex Differences in Central Tendency in PISA 2018 Reading — deciles') +
   theme(text = element_text(family = 'Optima'),
@@ -550,7 +548,6 @@ dev.off() # write image to working directory
 
 
 # MU3Rs and SQDs
-
 q <- k <- a <- b <- numeric(99)
 for (i in 1:99) {q[i] <- mean(as.numeric(P18M[i+138,-1]))} # SQDs math
 for (i in 1:99) {k[i] <- mean(as.numeric(P18R[i+138,-1]))} # SQDs reading
@@ -655,7 +652,7 @@ cap <- paste0('The standardized quantile difference (SQD) was computed at each p
 data <- data.frame(Percentile = rep(c(5:95), 8),
                    SQD = c(Q1M[5:95], Q2M[5:95], Q3M[5:95], Q4M[5:95],
                            Q1R[5:95], Q2R[5:95], Q3R[5:95], Q4R[5:95]),
-                   Quarter = rep(rep(c('Q1', 'Q2', 'Q3', 'Q4'), each = 91), 2),
+                   Quarter = rep(c('Q1', 'Q2', 'Q3', 'Q4'), each = 91, 2),
                    Subject = rep(c('Math', 'Reading'), each = 364))
 
 tiff(filename = 'SQDs quartered.png', width = 9, height = 9,
