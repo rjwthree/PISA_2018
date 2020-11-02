@@ -317,7 +317,7 @@ dev.off() # write image to working directory
 cap <- paste0('Three measures of male-female ratios in variability are plotted for nine ',
               'countries: median absolute deviation ratio (MADR), Gini\'s mean ',
               '\ndifference ratio (GMDR), and standard deviation ratio (SDR). ',
-              'Countries were drawn from a total of 50 to represent each decile of ',
+              'Countries were drawn from a total of 74 to represent each decile of ',
               'MADR values.')
 
 scores <- numeric(27)
@@ -358,7 +358,7 @@ dev.off() # write image to working directory
 cap <- paste0('Three measures of male-female ratios in variability are plotted for nine ',
               'countries: median absolute deviation ratio (MADR), Gini\'s mean ',
               '\ndifference ratio (GMDR), and standard deviation ratio (SDR). ',
-              'Countries were drawn from a total of 50 to represent each decile of ',
+              'Countries were drawn from a total of 74 to represent each decile of ',
               'MADR values.')
 
 scores <- numeric(27)
@@ -399,7 +399,7 @@ dev.off() # write image to working directory
 cap <- paste0('Two measures of male-female ratios in left tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
               'and standard \ndeviation ratio (SDR), computed in the left half of the ',
-              'distribution. Countries were drawn from a total of 50 to represent ',
+              'distribution. Countries were drawn from a total of 74 to represent ',
               'each decile of MADR values.')
 
 scores <- numeric(18)
@@ -437,7 +437,7 @@ dev.off() # write image to working directory
 cap <- paste0('Two measures of male-female ratios in left tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
               'and standard \ndeviation ratio (SDR), computed in the left half of the ',
-              'distribution. Countries were drawn from a total of 50 to represent ',
+              'distribution. Countries were drawn from a total of 74 to represent ',
               'each decile of MADR values.')
 
 scores <- numeric(18)
@@ -475,7 +475,7 @@ dev.off() # write image to working directory
 cap <- paste0('Two measures of male-female ratios in right tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
               'and standard \ndeviation ratio (SDR), computed in the right half of the ',
-              'distribution. Countries were drawn from a total of 50 to represent ',
+              'distribution. Countries were drawn from a total of 74 to represent ',
               'each decile of MADR values.')
 
 scores <- numeric(18)
@@ -513,7 +513,7 @@ dev.off() # write image to working directory
 cap <- paste0('Two measures of male-female ratios in right tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
               'and standard \ndeviation ratio (SDR), computed in the right half of the ',
-              'distribution. Countries were drawn from a total of 50 to represent ',
+              'distribution. Countries were drawn from a total of 74 to represent ',
               'each decile of MADR values.')
 
 scores <- numeric(18)
