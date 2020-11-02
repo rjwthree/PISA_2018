@@ -35,6 +35,8 @@ Another measure of variability that can be observed at every point throughout th
 
 A [few](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(left%20tail%2C%20reading).png) [analyses](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/MU3Rs.png) [found](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/SQDs.png) [that](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/SQDs%20quartered.png) sex differences in the left tail for reading were unexpected in several countries. Preliminarily, I would speculate that this is at least partly due to a floor effect. A combination of low overall scores and the superior female mean compresses male scores in particular because they amass near the floor. This appears to be severe in the Philippines, the Dominican Republic, Lebanon, and Kosovo. They have the lowest reading scores, and all four exhibit larger female spread in the left tail by some or all measures, which is probably not a coincidence.
 
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
 #### Gender inequality
 
 Although flawed, the World Economic Forum's Global Gender Gap Index (GGGI) is arguably the best quantification of women's disadvantages around the world. The [report](https://www.weforum.org/reports/global-gender-gap-report-2020) published in Dec 2019, which corresponds best with the assessment timeline of PISA 2018, contains [data](https://github.com/rjwthree/PISA_2018/blob/master/GGGI.csv) on 72 of the [74 countries tested by PISA](https://github.com/rjwthree/PISA_2018/blob/master/Country%20codes.csv). (Kosovo and Taiwan were the exceptions, given their difficulties with universal, official recognition.)
