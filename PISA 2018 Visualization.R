@@ -584,8 +584,9 @@ dev.off() # write image to working directory
 
 
 cap <- paste0('The standardized quantile difference (SQD) was computed at each percentile ',
-              'and averaged across \nall countries. The increasing trends indicate ',
-              'greater male variability throughout the distribution.')
+              'and averaged across all countries. Positive SQDs correspond to male \nadvantage; ',
+              'negative SQDs to female advantage. The increasing trends from left to right ',
+              'indicate greater male variability throughout the distribution.')
 
 data <- data.frame(Percentile = rep(c(5:95), 2),
                    SQD = c(q[5:95], k[5:95]),
