@@ -29,6 +29,12 @@ Males predominate among the lowest scores in reading. Below the 5th percentile, 
 
 Females predominate among those with [reading scores above the 95th percentile](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(reading).png), and in the median country females are about 50% more likely to score in that stratum. Males are disproportionately represented among the [top 5% of scores in math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(math).png) at all nine deciles, with a median difference of about 40%.
 
+The drastic sex differences in the below the 5th percentile of reading scores are shown here:
+
+<p align="center">
+<img src="https://github.com/rjwthree/PISA_2018/blob/master/Left%20tail%20(reading).png" width="700" height="600"/>
+</p>
+
 #### Variability differences
 
 Three measures of sex differences in variability are visualized for [math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(math).png) and [reading](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(reading).png), and all nine deciles for both math and reading show larger variability in males than females. This effect holds in both tails: for [math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(math%2C%20left%20tail).png) and [reading](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(reading%2C%20left%20tail).png) in the left tail, and [math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(math%2C%20right%20tail).png) and [reading](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Variability%20(reading%2C%20right%20tail).png) in the right tail. The only exceptions are in the reading scores of a small minority of countries: their left tails show greater spread in females rather than males (this is true with 95% confidence across both measures only in the Philippines). Right tails display more spread in males with very high consistency.
