@@ -29,7 +29,7 @@ Males predominate among the lowest scores in reading. Below the 5th percentile, 
 
 Females predominate among those with [reading scores above the 95th percentile](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(reading).png), and in the median country females are about 50% more likely to score in that stratum. Males are disproportionately represented among the [top 5% of scores in math](https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Right%20tail%20(math).png) at all nine deciles, with a median difference of about 40%.
 
-The drastic ratios of males to females below the 5th percentile of reading scores are shown here:
+The large ratios of males to females below the 5th percentile of reading scores are shown here:
 
 <p align="center">
 <img src="https://github.com/rjwthree/PISA_2018/blob/master/Left%20tail%20(reading).png" width="700" height="600"/>
