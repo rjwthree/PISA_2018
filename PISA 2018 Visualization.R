@@ -20,16 +20,24 @@ for (i in 1:9) {p[i] <- ceiling(74*i/10)} # ranks above or equal to each decile
 # math
 cap <- paste0('Three measures of sex differences in central tendency are ',
               'plotted for nine countries: U3, probability of superiority ',
-              '(PS), and Cohen\'s d. They are expressed on different scales, so ',
-              '\nthe axes are separated. For comparison, faint gray marks ',
-              'are plotted indicating where the other measures would convert ',
-              'given assumptions of normality and homoscedasticity.')
+              '(PS), and Cohen\'s d. For \ncomparison between different scales, ',
+              'faint gray marks are plotted indicating where the other ',
+              'measures would convert given assumptions \nof normality and ',
+              'homoscedasticity. Countries were drawn from a total of 74 to ',
+              'represent each decile of the average of the three measures.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- mean(c(P18M[14,i+1],
+                                  pnorm(0, qnorm(P18M[15,i+1])*sqrt(2), lower.tail = F),
+                                  pnorm(0, P18M[13,i+1], lower.tail = F)))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(81)
 for (i in 1:9) {
-  scores[9*i-8] <- as.numeric(sort(P18M[14,-1]))[p[i]] # U3
-  scores[9*i-4] <- as.numeric(P18M[15,-1][order(P18M[14,-1])])[p[i]] # PS
-  scores[9*i] <- as.numeric(P18M[13,-1][order(P18M[14,-1])][p[i]]) # d
+  nm <- names(sort(mns)[p[i]])
+  scores[9*i-8] <- P18M[14,nm] # U3
+  scores[9*i-4] <- P18M[15,nm] # PS
+  scores[9*i] <- P18M[13,nm] # d
   
   scores[9*i-7] <- pnorm(0, qnorm(scores[9*i-4])*sqrt(2), lower.tail = F) # PS shadow of U3
   scores[9*i-6] <- pnorm(0, scores[9*i], lower.tail = F) # d shadow of U3
@@ -45,8 +53,8 @@ for (i in 1:9) {
 scores[-c(7:9, 16:18, 25:27, 34:36, 43:45, 52:54, 61:63, 70:72, 79:81)] <-
   100*scores[-c(7:9, 16:18, 25:27, 34:36, 43:45, 52:54, 61:63, 70:72, 79:81)]
 
-CNT <- c('Iceland', 'Domin. Rep.', 'Moldova', 'Netherlands',
-         'South Korea', 'Denmark', 'Luxembourg', 'Chile', 'Japan')
+CNT <- c('UAE', 'Norway', 'Sweden', 'Netherlands', 'Romania',
+         'France', 'Latvia', 'New Zealand', 'Austria')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 9),
@@ -55,17 +63,17 @@ data <- data.frame(scores = scores,
                                   levels = c('U3','PS','d')))
 
 yscl <- list(
-  U3 = scale_y_continuous(limits = c(45.5, 55.1), breaks = seq(46, 54, 2),
-                          labels = c('46%', '48%', '50%', '52%', '54%')),
-  PS = scale_y_continuous(limits = c(46.8146, 53.6112), breaks = seq(48, 52, 2),
-                          labels = c('48%', '50%', '52%')),
-  d = scale_y_continuous(limits = c(-.11304, .12819), breaks = seq(-.1, .1, .05))
+  U3 = scale_y_continuous(limits = c(46.1318, 55.7), breaks = seq(46, 54, 4),
+                          minor_breaks = 46:56, labels = c('46%', '50%', '54%')),
+  PS = scale_y_continuous(limits = c(47.2626, 54.0374), breaks = seq(48, 54, 2),
+                          labels = c('48%', '50%', '52%', '54%')),
+  d = scale_y_continuous(limits = c(-.097114, .143367), breaks = seq(-.1, .1, .1))
 )
 
 gray3 <- rep(alpha('gray', .4), 3) # color for shadows
 
-tiff(filename = 'Central tendency (math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Central tendency (math).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 # the facetscales package enables control over all axes individually
 # with ggplot alone, the line would be: facet_grid(ratio ~ country, scales = 'free_y')
@@ -74,11 +82,11 @@ ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
              shape = 1, size = 5) +
   facet_grid_sc(rows = vars(ratio), cols = vars(country), scales = list(y = yscl)) +
   ggtitle('Sex Differences in Central Tendency in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         strip.text.y.right = element_text(angle = 0),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = NULL, caption = cap)
 
 dev.off() # write image to working directory
@@ -87,16 +95,24 @@ dev.off() # write image to working directory
 # reading
 cap <- paste0('Three measures of sex differences in central tendency are ',
               'plotted for nine countries: U3, probability of superiority ',
-              '(PS), and Cohen\'s d. They are expressed on different scales, so ',
-              '\nthe axes are separated. For comparison, faint gray marks ',
-              'are plotted indicating where the other measures would convert ',
-              'given assumptions of normality and homoscedasticity.')
+              '(PS), and Cohen\'s d. For \ncomparison between different scales, ',
+              'faint gray marks are plotted indicating where the other ',
+              'measures would convert given assumptions \nof normality and ',
+              'homoscedasticity. Countries were drawn from a total of 74 to ',
+              'represent each decile of the average of the three measures.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- mean(c(P18R[14,i+1],
+                                  pnorm(0, qnorm(P18R[15,i+1])*sqrt(2), lower.tail = F),
+                                  pnorm(0, P18R[13,i+1], lower.tail = F)))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(81)
 for (i in 1:9) {
-  scores[9*i-8] <- as.numeric(sort(P18R[14,-1], decreasing = T))[p[i]] # U3
-  scores[9*i-4] <- as.numeric(P18R[15,-1][order(P18R[14,-1], decreasing = T)])[p[i]] # PS
-  scores[9*i] <- as.numeric(P18R[13,-1][order(P18R[14,-1], decreasing = T)][p[i]]) # d
+  nm <- names(sort(mns, decreasing = T)[p[i]])
+  scores[9*i-8] <- P18R[14,nm] # U3
+  scores[9*i-4] <- P18R[15,nm] # PS
+  scores[9*i] <- P18R[13,nm] # d
   
   scores[9*i-7] <- pnorm(0, qnorm(scores[9*i-4])*sqrt(2), lower.tail = F) # PS shadow of U3
   scores[9*i-6] <- pnorm(0, scores[9*i], lower.tail = F) # d shadow of U3
@@ -112,8 +128,8 @@ for (i in 1:9) {
 scores[-c(7:9, 16:18, 25:27, 34:36, 43:45, 52:54, 61:63, 70:72, 79:81)] <-
   100*scores[-c(7:9, 16:18, 25:27, 34:36, 43:45, 52:54, 61:63, 70:72, 79:81)]
 
-CNT <- c('Singapore', 'Italy', 'Russia', 'Lebanon', 'Brunei',
-         'Ukraine', 'Slovakia', 'Moldova', 'UAE')
+CNT <- c('Japan', 'Germany', 'Vietnam', 'Spain', 'Brunei',
+         'Romania', 'Serbia', 'Lithuania', 'Albania')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 9),
@@ -122,17 +138,17 @@ data <- data.frame(scores = scores,
                                   levels = c('U3','PS','d')))
 
 yscl <- list(
-  U3 = scale_y_continuous(limits = c(29.792, 43), breaks = seq(30, 42, 4),
-                          labels = c('30%', '34%', '38%', '42%')),
-  PS = scale_y_continuous(limits = c(35.3814, 45.0374), breaks = seq(36, 44, 4),
-                          labels = c('36%', '40%', '44%')),
-  d = scale_y_continuous(limits = c(-.53039, -.17637), breaks = seq(-.5, -.2, .1))
+  U3 = scale_y_continuous(limits = c(30.8, 43.28206), breaks = seq(31, 43, 4),
+                          minor_breaks = 31:43, labels = c('31%', '35%', '39%', '43%')),
+  PS = scale_y_continuous(limits = c(36.1432, 45.2384), breaks = seq(36, 44, 4),
+                          minor_breaks = 36:45, labels = c('36%', '40%', '44%')),
+  d = scale_y_continuous(limits = c(-.501527, -.169198), breaks = seq(-.5, -.2, .1))
 )
 
 gray3 <- rep(alpha('gray', .4), 3) # color for shadows
 
-tiff(filename = 'Central tendency (reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Central tendency (reading).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 # the facetscales package enables control over all axes individually
 # with ggplot alone, the line would be: facet_grid(ratio ~ country, scales = 'free_y')
@@ -141,11 +157,11 @@ ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
              shape = 1, size = 5) +
   facet_grid_sc(rows = vars(ratio), cols = vars(country), scales = list(y = yscl)) +
   ggtitle('Sex Differences in Central Tendency in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         strip.text.y.right = element_text(angle = 0),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = NULL, caption = cap)
 
 dev.off() # write image to working directory
@@ -156,36 +172,41 @@ dev.off() # write image to working directory
 
 # left tail math
 cap <- paste0('Two measures of sex ratios below the 5th percentile of scores ',
-              'are plotted for nine countries: U3 ratios (U3Rs) and tail ',
-              '\nproportion ratios (TPRs). U3Rs compute the male-female proportion ',
-              'ratio below the female subgroup\'s 5th percentile, whereas \nTPRs ',
-              'do so for the total group\'s 5th percentile. Countries were drawn ',
-              'from a total of 74 to represent each decile of U3R values.')
+              'are plotted for nine countries: U3 ratios (U3Rs) and tail proportion',
+              '\nratios (TPRs). U3Rs compute the male-female proportion ratio below ',
+              'the female subgroup\'s 5th percentile, whereas TPRs do so for \nthe ',
+              'total group\'s 5th percentile. Countries were drawn from a total ',
+              'of 74 to represent each decile of the average of U3R and TPR values.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18M[23,i+1]), log(P18M[27,i+1]))))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18M[23,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18M[27,-1][order(P18M[23,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18M[23,nm] # U3R05
+  scores[2*i] <- P18M[27,nm] # TPR05
 }
 
-CNT <- c('Slovakia', 'Uruguay', 'Estonia', 'France', 'Netherlands',
-        'Australia', 'Albania', 'Vietnam', 'Iceland')
+CNT <- c('Slovakia', 'Luxembourg', 'Estonia', 'Montenegro',
+         'South Korea', 'Australia', 'Albania', 'Moldova', 'Thailand')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('U3R','TPR'), 9), levels = c('U3R','TPR')))
 
-tiff(filename = 'Left tail (math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Left tail (math).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('U3Rs and TPRs below the 5th percentile in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Tail Ratio', caption = cap) +
   scale_y_continuous(breaks = seq(from = .9, to = 1.8, by = .1),
                      limits = c(.86, 1.78), trans = 'log')
@@ -195,117 +216,132 @@ dev.off() # write image to working directory
 
 # left tail reading
 cap <- paste0('Two measures of sex ratios below the 5th percentile of scores ',
-              'are plotted for nine countries: U3 ratios (U3Rs) and tail ',
-              '\nproportion ratios (TPRs). U3Rs compute the male-female proportion ',
-              'ratio below the female subgroup\'s 5th percentile, whereas \nTPRs ',
-              'do so for the total group\'s 5th percentile. Countries were drawn ',
-              'from a total of 74 to represent each decile of U3R values.')
+              'are plotted for nine countries: U3 ratios (U3Rs) and tail proportion',
+              '\nratios (TPRs). U3Rs compute the male-female proportion ratio below ',
+              'the female subgroup\'s 5th percentile, whereas TPRs do so for \nthe ',
+              'total group\'s 5th percentile. Countries were drawn from a total ',
+              'of 74 to represent each decile of the average of U3R and TPR values.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18R[23,i+1]), log(P18R[27,i+1]))))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18R[23,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18R[27,-1][order(P18R[23,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18R[23,nm] # U3R05
+  scores[2*i] <- P18R[27,nm] # TPR05
 }
 
-CNT <- c('UK', 'Portugal', 'Spain', 'Belarus', 'Czech Rep.',
-         'Australia', 'Croatia', 'Greece', 'Georgia')
+CNT <- c('Colombia', 'Slovakia', 'Romania', 'Bosnia', 'Domin. Rep.', 
+         'Switzerland', 'Serbia', 'Greece', 'Norway')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('U3R','TPR'), 9), levels = c('U3R','TPR')))
 
-tiff(filename = 'Left tail (reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Left tail (reading).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('U3Rs and TPRs below the 5th percentile in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Tail Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 4, by = .5),
-                     limits = c(1.04, 3.85), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 4.5, by = .5),
+                     limits = c(1.04, 4.3), trans = 'log')
 
 dev.off() # write image to working directory
 
 
 # right tail math
 cap <- paste0('Two measures of sex ratios above the 95th percentile of scores ',
-              'are plotted for nine countries: U3 ratios (U3Rs) and tail ',
-              '\nproportion ratios (TPRs). U3Rs compute the male-female proportion ',
-              'ratio above the female subgroup\'s 95th percentile, whereas \nTPRs ',
-              'do so for the total group\'s 95th percentile. Countries were drawn ',
-              'from a total of 74 to represent each decile of U3R values.')
+              'are plotted for nine countries: U3 ratios (U3Rs) and tail proportion',
+              '\nratios (TPRs). U3Rs compute the male-female proportion ratio above ',
+              'the female subgroup\'s 95th percentile, whereas TPRs do so for \nthe ',
+              'total group\'s 95th percentile. Countries were drawn from a total ',
+              'of 74 to represent each decile of the average of U3R and TPR values.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18M[26,i+1]), log(P18M[30,i+1]))))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18M[26,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18M[30,-1][order(P18M[26,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18M[26,nm] # U3R95
+  scores[2*i] <- P18M[30,nm] # TPR95
 }
 
-CNT <- c('Albania', 'Iceland', 'Switzerland', 'Czech Rep.',
-         'Denmark', 'Romania', 'UAE', 'France', 'Croatia')
+CNT <- c('Albania', 'Georgia', 'Switzerland', 'Lithuania',
+         'South Korea', 'Romania', 'Uruguay', 'Brazil', 'Kosovo')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('U3R','TPR'), 9), levels = c('U3R','TPR')))
 
-tiff(filename = 'Right tail (math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Right tail (math).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('U3Rs and TPRs above the 95th percentile in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Tail Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 1.7, by = .1),
-                     limits = c(1, 1.7), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 1.8, by = .1),
+                     limits = c(1.005, 1.79), trans = 'log')
 
 dev.off() # write image to working directory
 
 
 # right tail reading
 cap <- paste0('Two measures of sex ratios above the 95th percentile of scores ',
-              'are plotted for nine countries: U3 ratios (U3Rs) and tail ',
-              '\nproportion ratios (TPRs). U3Rs compute the male-female proportion ',
-              'ratio above the female subgroup\'s 95th percentile, whereas \nTPRs ',
-              'do so for the total group\'s 95th percentile. Countries were drawn ',
-              'from a total of 74 to represent each decile of U3R values.')
+              'are plotted for nine countries: U3 ratios (U3Rs) and tail proportion',
+              '\nratios (TPRs). U3Rs compute the male-female proportion ratio above ',
+              'the female subgroup\'s 95th percentile, whereas TPRs do so for \nthe ',
+              'total group\'s 95th percentile. Countries were drawn from a total ',
+              'of 74 to represent each decile of the average of U3R and TPR values.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18R[26,i+1]), log(P18R[30,i+1]))))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18R[26,-1], decreasing = T))[p[i]]
-  scores[2*i] <- as.numeric(P18R[30,-1][order(P18R[26,-1], decreasing = T)][p[i]])
+  nm <- names(sort(mns, decreasing = T)[p[i]])
+  scores[2*i-1] <- P18R[26,nm] # U3R95
+  scores[2*i] <- P18R[30,nm] # TPR95
 }
 
-CNT <- c('France', 'Japan', 'Germany', 'Brunei', 'Australia',
-         'Switzerland', 'Spain', 'Poland', 'Georgia')
+CNT <- c('France', 'Japan', 'Kosovo', 'Lebanon', 'Sweden',
+         'Montenegro', 'Spain', 'Poland', 'Moldova')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('U3R','TPR'), 9), levels = c('U3R','TPR')))
 
-tiff(filename = 'Right tail (reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Right tail (reading).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('U3Rs and TPRs above the 95th percentile in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Tail Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = .4, by = -.1),
-                     limits = c(.41, .97), trans = 'log')
+  scale_y_continuous(breaks = seq(from = .4, to = 1, by = .1),
+                     limits = c(.412, .97), trans = 'log')
 
 dev.off() # write image to working directory
 
@@ -316,37 +352,42 @@ dev.off() # write image to working directory
 # total variability math
 cap <- paste0('Three measures of male-female ratios in variability are plotted for nine ',
               'countries: median absolute deviation ratio (MADR), Gini\'s mean ',
-              '\ndifference ratio (GMDR), and standard deviation ratio (SDR). ',
+              'difference \nratio (GMDR), and standard deviation ratio (SDR). ',
               'Countries were drawn from a total of 74 to represent each decile of ',
-              'MADR values.')
+              'the average of the three ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18M[16,i+1]), log(P18M[19,i+1]), log(P18M[22,i+1]))))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(27)
 for (i in 1:9) {
-  scores[3*i-2] <- as.numeric(sort(P18M[19,-1]))[p[i]]
-  scores[3*i-1] <- as.numeric(P18M[22,-1][order(P18M[19,-1])])[p[i]]
-  scores[3*i] <- as.numeric(P18M[16,-1][order(P18M[19,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[3*i-2] <- P18M[19,nm] # MADR
+  scores[3*i-1] <- P18M[22,nm] # GMDR
+  scores[3*i] <- P18M[16,nm] # SDR
 }
 
-CNT <- c('Bosnia', 'Czech Rep.', 'Peru', 'Panama', 'Denmark',
-         'Spain', 'Montenegro', 'Japan', 'Finland')
+CNT <- c('Turkey', 'Thailand', 'Russia', 'Latvia', 'France',
+         'New Zealand', 'Estonia', 'Italy', 'Kosovo')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 3), levels = CNT),
                    ratio = factor(rep(c('MADR','GMDR','SDR'), 9),
                                   levels = c('MADR','GMDR','SDR')))
 
-tiff(filename = 'Variability (math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (math).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#FF6C00', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Variability in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         axis.text.x = element_text(angle = 90, hjust = 1),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Variability Ratio', caption = cap) +
   scale_y_continuous(breaks = seq(from = 1, to = 1.14, by = .02),
                      limits = c(1.002, 1.138), trans = 'log')
@@ -357,37 +398,42 @@ dev.off() # write image to working directory
 # total variability reading
 cap <- paste0('Three measures of male-female ratios in variability are plotted for nine ',
               'countries: median absolute deviation ratio (MADR), Gini\'s mean ',
-              '\ndifference ratio (GMDR), and standard deviation ratio (SDR). ',
+              'difference \nratio (GMDR), and standard deviation ratio (SDR). ',
               'Countries were drawn from a total of 74 to represent each decile of ',
-              'MADR values.')
+              'the average of the three ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18R[16,i+1]), log(P18R[19,i+1]), log(P18R[22,i+1]))))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(27)
 for (i in 1:9) {
-  scores[3*i-2] <- as.numeric(sort(P18R[19,-1]))[p[i]]
-  scores[3*i-1] <- as.numeric(P18R[22,-1][order(P18R[19,-1])])[p[i]]
-  scores[3*i] <- as.numeric(P18R[16,-1][order(P18R[19,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[3*i-2] <- P18R[19,nm] # MADR
+  scores[3*i-1] <- P18R[22,nm] # GMDR
+  scores[3*i] <- P18R[16,nm] # SDR
 }
 
-CNT <- c('Indonesia', 'Slovakia', 'Kazakhstan', 'Singapore',
-         'Australia', 'Portugal', 'Moldova', 'Lithuania', 'Iceland')
+CNT <- c('Hungary', 'Brazil', 'Romania', 'Kazakhstan',
+         'Italy', 'Sweden', 'Vietnam', 'Croatia', 'Iceland')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 3), levels = CNT),
                    ratio = factor(rep(c('MADR','GMDR','SDR'), 9),
                                   levels = c('MADR','GMDR','SDR')))
 
-tiff(filename = 'Variability (reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (reading).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#FF6C00', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Variability in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         axis.text.x = element_text(angle = 90, hjust = 1),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Variability Ratio', caption = cap) +
   scale_y_continuous(breaks = seq(from = 1, to = 1.16, by = .02),
                      limits = c(1.0015, 1.158), trans = 'log')
@@ -398,37 +444,42 @@ dev.off() # write image to working directory
 # left tail variability math
 cap <- paste0('Two measures of male-female ratios in left tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
-              'and standard \ndeviation ratio (SDR), computed in the left half of the ',
+              'and standard deviation \nratio (SDR), computed in the left half of the ',
               'distribution. Countries were drawn from a total of 74 to represent ',
-              'each decile of MADR values.')
+              'each decile of the average of the two ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18M[17,i+1]), log(P18M[20,i+1]))))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18M[21,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18M[18,-1][order(P18M[21,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18M[17,nm] # SDR_L
+  scores[2*i] <- P18M[20,nm] # MADR_L
 }
 
-CNT <- c('United States', 'Slovenia', 'Estonia', 'Bulgaria',
-         'Mexico', 'Chile', 'Spain', 'Serbia', 'Saudi Arabia')
+CNT <- c('Thailand', 'Sweden', 'Bulgaria', 'Spain', 'Germany', 
+         'Belarus', 'Greece', 'Colombia', 'Japan')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (left tail, math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (math, left tail).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Left Tail Variability in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Left Tail Variability Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 1.15, by = .03),
-                     limits = c(1.001, 1.1485), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 1.14, by = .02),
+                     limits = c(1.002, 1.1382), trans = 'log')
 
 dev.off() # write image to working directory
 
@@ -436,37 +487,42 @@ dev.off() # write image to working directory
 # left tail variability reading
 cap <- paste0('Two measures of male-female ratios in left tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
-              'and standard \ndeviation ratio (SDR), computed in the left half of the ',
+              'and standard deviation \nratio (SDR), computed in the left half of the ',
               'distribution. Countries were drawn from a total of 74 to represent ',
-              'each decile of MADR values.')
+              'each decile of the average of the two ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18R[17,i+1]), log(P18R[20,i+1]))))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18R[21,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18R[18,-1][order(P18R[21,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18R[17,nm] # SDR_L
+  scores[2*i] <- P18R[20,nm] # MADR_L
 }
 
-CNT <- c('Singapore', 'Georgia', 'Spain', 'Slovakia',
-         'Taiwan', 'Portugal', 'Greece', 'Finland', 'Norway')
+CNT <- c('Morocco', 'Hungary', 'Kazakhstan', 'Germany',
+         'Montenegro', 'France', 'Croatia', 'Taiwan', 'South Korea')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (left tail, reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (reading, left tail).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Left Tail Variability in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Left Tail Variability Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 1.2, by = .04),
-                     limits = c(1.003, 1.196), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 1.16, by = .04),
+                     limits = c(.996, 1.167), trans = 'log')
 
 dev.off() # write image to working directory
 
@@ -474,37 +530,43 @@ dev.off() # write image to working directory
 # right tail variability math
 cap <- paste0('Two measures of male-female ratios in right tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
-              'and standard \ndeviation ratio (SDR), computed in the right half of the ',
+              'and standard deviation \nratio (SDR), computed in the right half of the ',
               'distribution. Countries were drawn from a total of 74 to represent ',
-              'each decile of MADR values.')
+              'each decile of the average of the two ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18M[18,i+1]), log(P18M[21,i+1]))))}
+names(mns) <- names(P18M)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18M[22,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18M[19,-1][order(P18M[22,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18M[18,nm] # SDR_R
+  scores[2*i] <- P18M[21,nm] # MADR_R
 }
 
-CNT <- c('Morocco', 'Thailand', 'Canada', 'Uruguay', 'United States',
-         'Moldova', 'Singpaore', 'Finland', 'Saudi Arabia')
+CNT <- c('United States', 'Slovenia', 'Singapore', 'Germany',
+         'Argentina', 'Bosnia', 'Moldova', 'Philippines', 'Finland')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (right tail, math).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (math, right tail).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Right Tail Variability in PISA 2018 Math — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Right Tail Variability Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 1.14, by = .02),
-                     limits = c(1.002, 1.138), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 1.16, by = .04),
+                     minor_breaks = seq(1, 1.17, .01),
+                     limits = c(1.003, 1.168), trans = 'log')
 
 dev.off() # write image to working directory
 
@@ -512,47 +574,55 @@ dev.off() # write image to working directory
 # right tail variability reading
 cap <- paste0('Two measures of male-female ratios in right tail variability are ',
               'plotted for nine countries: median absolute deviation ratio (MADR) ',
-              'and standard \ndeviation ratio (SDR), computed in the right half of the ',
+              'and standard deviation \nratio (SDR), computed in the right half of the ',
               'distribution. Countries were drawn from a total of 74 to represent ',
-              'each decile of MADR values.')
+              'each decile of the average of the two ratios.')
+
+mns <- numeric(74)
+for (i in 1:74) {mns[i] <- exp(mean(c(log(P18R[18,i+1]), log(P18R[21,i+1]))))}
+names(mns) <- names(P18R)[-1]
 
 scores <- numeric(18)
 for (i in 1:9) {
-  scores[2*i-1] <- as.numeric(sort(P18R[22,-1]))[p[i]]
-  scores[2*i] <- as.numeric(P18R[19,-1][order(P18R[22,-1])][p[i]])
+  nm <- names(sort(mns)[p[i]])
+  scores[2*i-1] <- P18R[18,nm] # SDR_R
+  scores[2*i] <- P18R[21,nm] # MADR_R
 }
 
-CNT <- c('Peru', 'Brazil', 'Serbia', 'Russia', 'United States',
-         'Moldova', 'Netherlands', 'Ukraine', 'Iceland')
+CNT <- c('Singapore', 'Switzerland', 'Bosnia', 'Ireland',
+         'Canada', 'Peru', 'Sweden', 'Finland', 'Latvia')
 
 data <- data.frame(scores = scores,
                    country = factor(rep(as.character(CNT), each = 2), levels = CNT),
                    ratio = factor(rep(c('MADR','SDR'), 9), levels = c('MADR','SDR')))
 
-tiff(filename = 'Variability (right tail, reading).png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'Variability (reading, right tail).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = ratio, y = scores, colour = ratio)) +
   geom_point(colour = rep(c('#E82728', '#8000FF'), 9), shape = 1, size = 5) +
   facet_grid(.~country) +
   ggtitle('Sex Differences in Right Tail Variability in PISA 2018 Reading — deciles') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 15))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
   labs(x = NULL, y = 'Right Tail Variability Ratio', caption = cap) +
-  scale_y_continuous(breaks = seq(from = 1, to = 1.16, by = .02),
-                     limits = c(1.0015, 1.158), trans = 'log')
+  scale_y_continuous(breaks = seq(from = 1, to = 1.2, by = .04),
+                     minor_breaks = seq(1, 1.19, .01),
+                     limits = c(1.0015, 1.198), trans = 'log')
 
 dev.off() # write image to working directory
 
 
 # MU3Rs and SQDs
-q <- k <- a <- b <- numeric(99)
-for (i in 1:99) {q[i] <- mean(as.numeric(P18M[i+138,-1]))} # SQDs math
-for (i in 1:99) {k[i] <- mean(as.numeric(P18R[i+138,-1]))} # SQDs reading
-for (i in 1:99) {a[i] <- exp(mean(as.numeric(P18M[i+39,-1])))} # MU3Rs math
-for (i in 1:99) {b[i] <- exp(mean(as.numeric(P18R[i+39,-1])))} # MU3Rs reading
+a <- b <- q <- k <- numeric(99)
+for (i in 1:99) {
+  a[i] <- exp(mean(as.numeric(P18M[i+39,-1]))) # MU3Rs math
+  b[i] <- exp(mean(as.numeric(P18R[i+39,-1]))) # MU3Rs reading
+  q[i] <- mean(as.numeric(P18M[i+138,-1])) # SQDs math
+  k[i] <- mean(as.numeric(P18R[i+138,-1])) # SQDs reading
+}
 
 cap <- paste0('The median-aligned U3 ratio (MU3R) was computed at each percentile ',
               'and averaged \nacross all countries. The U shapes indicate ',
@@ -562,17 +632,17 @@ data <- data.frame(Percentile = rep(c(5:95), 2),
                    SQD = c(a[5:95], b[5:95]),
                    Subject = rep(c('Math', 'Reading'), each = 91))
 
-tiff(filename = 'MU3R.png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'MU3Rs.png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data = data, aes(x = Percentile, y = SQD, group = Subject)) +
-  geom_line(aes(color = Subject), size = .75) +
+  geom_line(aes(color = Subject), size = .8) +
   ggtitle('Median-aligned U3 Ratios in PISA 2018') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         legend.position = 'bottom',
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 10))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 10))) +
   labs(x = 'Percentile', y = 'MU3R', caption = cap) +
   scale_x_continuous(breaks = seq(from = 0, to = 100, by = 10),
                      limits = c(3, 97)) +
@@ -592,17 +662,17 @@ data <- data.frame(Percentile = rep(c(5:95), 2),
                    SQD = c(q[5:95], k[5:95]),
                    Subject = rep(c('Math', 'Reading'), each = 91))
 
-tiff(filename = 'SQDs.png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'SQDs.png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = Percentile, y = SQD, group = Subject)) +
   geom_line(aes(color = Subject), size = .8) +
   ggtitle('Standardized Quantile Differences in PISA 2018') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         legend.position = 'bottom',
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 10))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 10))) +
   labs(x = 'Percentile', y = 'SQD', caption = cap) +
   scale_x_continuous(breaks = seq(from = 0, to = 100, by = 10),
                      limits = c(3, 97)) +
@@ -656,17 +726,17 @@ data <- data.frame(Percentile = rep(c(5:95), 8),
                    Quarter = rep(c('Q1', 'Q2', 'Q3', 'Q4'), each = 91, 2),
                    Subject = rep(c('Math', 'Reading'), each = 364))
 
-tiff(filename = 'SQDs quartered.png', width = 9, height = 9,
-     units = 'in', pointsize = 12, bg = 'white', res = 300) # image file
+tiff(filename = 'SQDs quartered.png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = Percentile, y = SQD, group = interaction(Subject, Quarter))) +
   geom_line(aes(color = Quarter, linetype = Subject), size = .8) +
   ggtitle('Standardized Quantile Differences in PISA 2018, Quartered by Total Shifts') +
-  theme(text = element_text(family = 'Optima'),
+  theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
         legend.position = 'bottom',
-        plot.caption = element_text(size = 8, hjust = .5, margin = margin(t = 10))) +
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 10))) +
   labs(x = 'Percentile', y = 'SQD', caption = cap) +
   scale_x_continuous(breaks = seq(from = 0, to = 100, by = 10),
                      limits = c(3, 97)) +
