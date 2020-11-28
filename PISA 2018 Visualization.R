@@ -749,6 +749,61 @@ dev.off() # write image to working directory
 
 
 
+### Global Gender Gap Index (GGGI) and U3
+
+# math
+cap <- paste0('Sex differences in math scores, expressed as U3, are plotted ',
+              'as a function of scores on the \nGlobal Gender Gap Index (GGGI). ',
+              'Countries with higher GGGI scores are closer to parity.')
+
+tiff(filename = 'GGGI U3 (math).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
+
+ggplot(data = data.frame(GI = GGGI$GGGI, U3M = as.numeric(P18M[14,-1])),
+       aes(x = GI, y = U3M)) +
+  geom_point(colour = '#FF6C00', shape = 1, size = 5) +
+  ggtitle('Gender Inequality and U3 in PISA 2018 Math') +
+  theme(text = element_text(family = 'Optima', size = 14),
+        panel.background = element_rect(fill = alpha('#45BCFF', .15)),
+        plot.title = element_text(hjust = .5),
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
+  labs(x = 'Global Gender Gap Index', y = 'U3', caption = cap) +
+  scale_x_continuous(breaks = seq(.6, .9, .1), minor_breaks = seq(.6, .9, .05),
+                     limits = c(.598, .902)) +
+  scale_y_continuous(breaks = seq(.4, .6, .05),
+                     labels = c('40%', '45%', '50%', '55%', '60%'),
+                     limits = c(.39, .61))
+
+dev.off() # write image to working directory
+
+
+# reading
+cap <- paste0('Sex differences in reading scores, expressed as U3, are plotted ',
+              'as a function of scores on the \nGlobal Gender Gap Index (GGGI). ',
+              'Countries with higher GGGI scores are closer to parity.')
+
+tiff(filename = 'GGGI U3 (reading).png', width = 10.5, height = 9,
+     units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
+
+ggplot(data = data.frame(GI = GGGI$GGGI, U3R = as.numeric(P18R[14,-1])),
+       aes(x = GI, y = U3R)) +
+  geom_point(colour = '#FF6C00', shape = 1, size = 5) +
+  ggtitle('Gender Inequality and U3 in PISA 2018 Reading') +
+  theme(text = element_text(family = 'Optima', size = 14),
+        panel.background = element_rect(fill = alpha('#45BCFF', .15)),
+        plot.title = element_text(hjust = .5),
+        plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 15))) +
+  labs(x = 'Global Gender Gap Index', y = 'U3', caption = cap) +
+  scale_x_continuous(breaks = seq(.6, .9, .1), minor_breaks = seq(.6, .9, .05),
+                     limits = c(.598, .902)) +
+  scale_y_continuous(breaks = seq(.25, .45, .05), minor_breaks = seq(.25, .475, .025),
+                     labels = c('25%', '30%', '35%', '40%', '45%'),
+                     limits = c(.25, .475))
+
+dev.off() # write image to working directory
+
+
+
 
 
 
