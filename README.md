@@ -57,6 +57,10 @@ The index is an average of four subindices which can range from 0 to 1. For each
 
 The correlations with mean and median scores in both math and reading are about .4, whether they be with the total, female, or male scores. This is consistent with an association between greater gender equality and human development in general. The correlation with sex differences at the center - U3 and probability of superiority - is .25-.28 in math and about .21 in reading. That is, there is a mild tendency for males to perform better relative to females in more gender-equal countries.
 
+<p align="center">
+<img src="https://github.com/rjwthree/PISA_2018/blob/master/GGGI%20U3%20(math).png" width="708" height="600"/>
+</p>
+
 Countries with lower gender equality tend to have males overrepresented to a greater degree in the bottom 5% and 10% of both math and reading scores (correlations roughly -.2). There is no relation in the right tail of reading. With regard to the top 5% and 10% of math scores, males are more strongly overrepresented in more gender-equal countries (correlations of .21 and .25, respectively).
 
 Correlations between GGGI and sex differences in variability are all close to zero, suggesting that higher variability in males is not a product of gender inequality. These analyses of gender inequality are superficial and preliminary. There is some sign of a curvilinear relationship, in which the most gender-equal countries share some outcomes with the most unequal.
