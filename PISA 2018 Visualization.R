@@ -139,7 +139,7 @@ data <- data.frame(scores = scores,
                                   levels = c('U3','PS','d')))
 
 yscl <- list(
-  U3 = scale_y_continuous(limits = c(30.8, 43.28206), breaks = seq(31, 43, 4),
+  U3 = scale_y_continuous(limits = c(30.8, 43.2821), breaks = seq(31, 43, 4),
                           minor_breaks = 31:43, labels = c('31%', '35%', '39%', '43%')),
   PS = scale_y_continuous(limits = c(36.1432, 45.2384), breaks = seq(36, 44, 4),
                           minor_breaks = 36:45, labels = c('36%', '40%', '44%')),
