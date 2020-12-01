@@ -120,7 +120,7 @@ Median-aligned U3 Ratios (MU3Rs)* - U3Rs calculated after aligning the male and 
 
 Standardized Quantile Differences (SQDs)* - Raw male-female differences at each percentile, as a percentage of the mean of male and female MADs. An increasing trend from left to right indicates higher male variability; a decreasing trend indicates higher female variability. The purpose of dividing by MAD is to standardize the quantile differences with a robust measure of scale.
 
-The next [section](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L616) adjusts the scores linearly for age and recalculates the effect sizes from Cohen's d to GMDR.
+The next [section](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L616) adjusts the scores linearly for age and recalculates the effect sizes from Cohen's _d_ to GMDR.
 
 ### [Standard Errors and Confidence Intervals](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R#L700)
 Computing standard errors is the most computationally intensive procedure. The use of 80 sets of replicate weights, in combination with the ten sets of plausible values, means that each effect size must be recalculated 800 times. The sampling variance and imputation variance are then calculated according to procedures described by the '[PISA 2018 Technical Report](https://www.oecd.org/pisa/data/pisa2018technicalreport/)'. The sum of sampling and imputation variance is the total variance, and its square root is the standard error. The standard errors are then converted to 95% confidence intervals through typical methods, and the lower and upper bounds of these confidence intervals are recorded.
