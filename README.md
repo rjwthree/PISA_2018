@@ -79,7 +79,7 @@ The [script](https://github.com/rjwthree/PISA_2018/blob/master/PISA%202018.R) pr
 
 (5) Summary and Output
 
-Effect sizes were selected (or created) to be robust, intuitive and useful. Common effect sizes which are not robust or intuitive, like Cohen's d, are also used for the sake of external comparison. An attitude of [multiverse analysis](https://journals.sagepub.com/doi/full/10.1177/1745691616658637) is applied: when multiple reasonable analyses exist, they are all conducted so that the sensitivity of substantive conclusions to specific analytic choices can be observed.
+Effect sizes were selected (or created) to be robust, intuitive and useful. Common effect sizes which are not robust or intuitive, like Cohen's _d_, are also used for the sake of external comparison. An attitude of [multiverse analysis](https://journals.sagepub.com/doi/full/10.1177/1745691616658637) is applied: when multiple reasonable analyses exist, they are all conducted so that the sensitivity of substantive conclusions to specific analytic choices can be observed.
 
 The data are complex for two reasons: (1) each student responds to only a subset of all questions, so each student is given ten imputed scores, also known as [plausible values](https://www.oecd.org/pisa/data/pisa2018technicalreport/Ch.09-Scaling-PISA-Data.pdf#page=31) (PVs); and (2) the sampling procedures employ clustering and stratification, so [Fay's method](https://www.oecd.org/pisa/data/pisa2018technicalreport/PISA2018%20TecReport-Ch-08-Survey-Weights.pdf#page=8) of balanced repeated replication is used to compute standard errors. Due to the first point, standard errors incorporate not only sampling variance but also imputation variance. The sampling design also means that each student is assigned their own weight. The data files are designed for SPSS and SAS and are analyzed almost exclusively as such.
 
@@ -96,19 +96,19 @@ All functions used for analysis are user-defined, for various reasons related to
 
 Means and Medians - Means and medians of total group, females, and males, as well as male-female mean and median differences.
 
-Cohen's d - This is a very common effect size and it is implemented as usual: the raw mean difference divided by the quadratic mean of standard deviations.
+Cohen's _d_ - This is a very common effect size and it is implemented as usual: the raw mean difference divided by the quadratic mean of standard deviations.
 
 U3* - The proportion of males above the female median. Adapted from the canonical Cohen's U3, which is incorrectly based on the mean rather than the median.
 
 Probability of Superiority (PS) - The probability that a random male will have a higher score than a random female.
 
-Standard Deviation Ratio (SDR) - The ratio of male SD to female SD.
-
-Left SDR and Right SDR* - The SDR divided into the left and right tails. That is, the square root of the mean squared deviation from the mean among the subset of scores below or above the mean, respectively.
-
 Median Absolute Deviation Ratio (MADR) - The male-female ratio of median absolute deviation (MAD) from the median.
 
-Left MADR and Right MADR* - The MADR divided into the left and right tails. That is, the median absolute deviation from the median among the subset of scores below or above the median, respectively.
+Left MADR and Right MADR* - The MADR divided into the left and right tails. That is, the male-female ratio of the median absolute deviation from the median among the subset of scores below or above the median, respectively.
+
+Standard Deviation Ratio (SDR) - The ratio of male SD to female SD.
+
+Left SDR and Right SDR* - The SDR divided into the left and right tails. That is, the male-female ratio of the square root of the mean squared deviation from the mean among the subset of scores below or above the mean, respectively.
 
 Gini's Mean Difference Ratio (GMDR) - Imagine randomly selecting two students and finding the distance between their scores. GMD gives the expected value of this interval: the mean absolute difference. The GMDR is the male-female ratio.
 
