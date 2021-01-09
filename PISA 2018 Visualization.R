@@ -10,7 +10,7 @@ library(scales) # transparent colors
 # download data from Github
 P18M <- read.csv(url('https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Full%20output%20(math).csv'))[,-1]
 P18R <- read.csv(url('https://raw.githubusercontent.com/rjwthree/PISA_2018/master/Full%20output%20(reading).csv'))[,-1]
-GGGI <- read.csv(url('https://raw.githubusercontent.com/rjwthree/PISA_2018/master/GGGI.csv'))[,-1]
+GGGI <- read.csv(url('https://raw.githubusercontent.com/rjwthree/PISA_2018/master/GGGI.csv'))
 
 p <- numeric(9)
 for (i in 1:9) {p[i] <- ceiling(74*i/10)} # ranks above or equal to each decile
